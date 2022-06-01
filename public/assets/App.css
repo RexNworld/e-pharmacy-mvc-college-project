@@ -1,0 +1,569 @@
+.pt {
+  padding-top: 15%;
+}
+
+.logo {
+  width: 150px;
+  height: 50px;
+}
+
+.background {
+  background-image: url('image/doc.jfif');
+  background-size: 1550px 750px;
+  background-repeat: no-repeat;
+}
+
+.topic {
+  font-size: 30px;
+  font-weight: 600;
+  font-family: 'Kalam', cursive;
+  text-decoration: underline;
+  color: rgb(0, 64, 13);
+}
+
+.cityname {
+  font-size: 25px;
+  font-weight: 400px;
+  color: #001738;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 3%;
+}
+
+.select > select {
+  width: 80%;
+  /* padding-left: 2%; */
+  border-radius: 8px;
+  font-size: 25px;
+  color: darkslategray;
+  background-color: rgba(122, 222, 242, 0.816);
+  height: 50px;
+  overflow-y: scroll;
+}
+
+.btn-next {
+  background-color: #8affd1;
+  width: 150px;
+  font-size: 30px;
+  font-weight: 600px;
+  color: darkolivegreen;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: solid rgb(62, 239, 100);
+}
+
+.btn-next:after {
+  content: '\276F \276F';
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.btn-next:hover {
+  padding-right: 25px;
+  background-color: aquamarine;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn-next:hover:after {
+  opacity: 1;
+  right: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .pt {
+    padding-top: 50%;
+  }
+
+  .logo {
+    width: 75px;
+    height: 30px;
+  }
+
+  .background {
+    background-image: url('image/mobbg.jfif');
+    background-size: 600px 1000px;
+    background-repeat: no-repeat;
+  }
+
+  .topic {
+    font-size: 15px;
+  }
+
+  .select > select {
+    font-size: 20px;
+    overflow-y: scroll;
+  }
+
+  .btn-next {
+    width: 25px;
+    font-size: 15px;
+    font-weight: 300px;
+  }
+}
+
+/*CSS for Selectdoc.html*/
+.logo {
+  width: 180px;
+  height: 30px;
+}
+.background-doc {
+  background-color: #caefe1;
+}
+/* .container{
+    display: flex;
+    width: 95%;
+    height: 200px;
+    background-color: rgba(149, 231, 239, 0.886);
+    border-radius: 25px;
+    border: solid rgb(116, 241, 245);
+    justify-content: flex-start;
+    
+} */
+/* .container > div {
+    width: 500px;
+    margin-left:-25px;
+    margin-top: 50px;
+    text-align: left;
+    line-height: 35px;
+    font-size: 20px;
+  }
+  .container > div > strong:before{
+    content:'\25C9';
+    color: #001738;
+  } */
+.checked {
+  color: orange;
+}
+.doc-img {
+  width: 300px;
+  height: 150px;
+  border-radius: 50%;
+  margin-left: -50px;
+  margin-top: 25px;
+}
+.detail {
+  font-size: 24px;
+}
+.doctor-modal {
+  width: 200px;
+  height: 100px;
+  border-radius: 50%;
+  margin-left: 130px;
+}
+.modal-detail {
+  margin-left: 30px;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn-upload {
+  border: 1px solid rgba(82, 206, 113, 0.563);
+  color: rgb(244, 115, 72);
+  background-color: rgb(238, 238, 191);
+  padding: 5px 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type='file'] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+.view-profile {
+  width: 200px;
+  background-color: #00ffbf;
+  border: #08503e;
+}
+.link-container {
+  text-decoration: none;
+  color: darkgreen;
+}
+/* Reshav Custom CSS for MVC */
+.image-container {
+  position: relative;
+  padding: 0px;
+}
+
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+      However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+.small-box {
+  border-radius: 0.25rem;
+  box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+  display: block;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.small-box > .inner {
+  padding: 10px;
+}
+
+.small-box .icon {
+  color: rgba(0, 0, 0, 0.15);
+  z-index: 0;
+}
+
+.small-box .icon > i.fa,
+.small-box .icon > i.fab,
+.small-box .icon > i.fad,
+.small-box .icon > i.fal,
+.small-box .icon > i.far,
+.small-box .icon > i.fas,
+.small-box .icon > i.ion {
+  font-size: 70px;
+  top: 20px;
+}
+
+.small-box .icon > i {
+  font-size: 90px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  transition: -webkit-transform 0.3s linear;
+  transition: transform 0.3s linear;
+  transition: transform 0.3s linear, -webkit-transform 0.3s linear;
+}
+
+.small-box > .small-box-footer {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  display: block;
+  padding: 3px 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.small-box h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 10px;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.bg-primary,
+.bg-secondary,
+.bg-success,
+.bg-danger,
+.bg-warning,
+.bg-info,
+.bg-dark,
+.bg-info > a {
+  color: #fff !important;
+}
+
+.bg-light,
+.bg-white,
+.bg-light > a,
+.bg-white > a {
+  color: #000 !important;
+}
+
+.shadow-own2 {
+  box-shadow: -12px 1rem 0.2rem -8px rgb(58 59 69 / 20%) !important;
+}
+
+.shadow-own {
+  box-shadow: -12px 1rem 0.2rem -8px rgb(58 59 69 / 20%) !important;
+}
+
+.shadow-own:hover,
+.shadow-own:focus {
+  box-shadow: 1px -1rem 0.2rem -8px rgb(58 59 69 / 20%) !important;
+  transform: translateY(0.45em);
+}
+
+/* Custom for datatables */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #000 !important;
+  background-color: #d4d4d4 !important;
+  transition: background-color 0.3s !important;
+  /* border-radius: 20px !important; */
+  margin: 0 3px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  color: #fff !important;
+  background-color: #091f366f !important;
+  box-shadow: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  color: #fff !important;
+  background-color: #4caf50 !important;
+  border: 1px #4caf50 solid !important ;
+}
+
+/* Custom Css Home PAge */
+* {
+  font-family: Calibri;
+}
+
+@media only screen and (min-width: 1400px) {
+  .brand-style {
+    width: 30% !important;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .brand-style {
+    width: 20% !important;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .brand-style {
+    width: 20% !important;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 990px) {
+  .brand-style {
+    width: 30% !important;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .brand-style {
+    width: 50% !important;
+    margin: 0;
+  }
+}
+
+.carousel-indicators .active {
+  background-color: #f0810f;
+}
+
+section:nth-child(even) {
+  padding: 1rem;
+  background: #f9fafb;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+section:nth-child(odd) {
+  padding: 1rem;
+  background: #fff;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-theme {
+  background-color: #f0810f !important;
+  border-color: #f0810f !important;
+}
+.hide-scrollbar {
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
+}
+.btn-rise {
+  border-radius: 20px !important;
+}
+.btn-rise:hover,
+.btn-rise:focus {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transform: translateY(-0.25em);
+}
+/* Custom Css Home PAge */
+
+/* Naresg Register Page */
+
+.content form .user-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+/* form .user-details .input-box {
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
+} */
+/* form .input-box span.details {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+} */
+.user-details .input-box input {
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+.user-details .input-box input:focus,
+.user-details .input-box input:valid {
+  border-color: #16a085;
+}
+form .gender-details .gender-title {
+  font-size: 20px;
+  font-weight: 500;
+}
+form .category {
+  display: flex;
+  /* width: 80%; */
+  margin: 14px;
+  justify-content: space-evenly;
+}
+form .category label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+form .category label .dot {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background: #d9d9d9;
+  border: 5px solid transparent;
+  transition: all 0.3s ease;
+}
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two,
+#dot-3:checked ~ .category label .three {
+  background: #16a085;
+  border-color: #d9d9d9;
+}
+form input[type='radio'] {
+  display: none;
+}
+form .button {
+  height: 45px;
+  margin: 35px 0;
+}
+form .button input {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #16a085, #ffff);
+}
+form .button input:hover {
+  /* transform: scale(0.99); */
+  background: linear-gradient(-135deg, #fff, #16a085);
+}
+@media (max-width: 584px) {
+  .container {
+    max-width: 100%;
+  }
+  form .user-details .input-box {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  form .category {
+    width: 100%;
+  }
+  .content form .user-details {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  .user-details::-webkit-scrollbar {
+    width: 5px;
+  }
+}
+@media (max-width: 459px) {
+  .container .content .category {
+    flex-direction: column;
+  }
+}
+
+.special-img {
+  width: 40px;
+  border-radius: 20px;
+}

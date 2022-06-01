@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    Options -Multiviews
+    #RewriteEngine Options
+    RewriteBase /php-freamwork/public
+    #RewriteCond %{REQUEST_FILENAME} !-d
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+
+RewriteEngine on 
+RewriteCond %{REQUEST_URI} !\.(?:css|js|map|scss|woff|woff2)$ [NC]
+RewriteRule ^ - [L,F] 
+
+
+</IfModule>
