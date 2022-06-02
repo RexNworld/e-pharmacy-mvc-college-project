@@ -1,5 +1,5 @@
 <?php
- require_once '/./components/smallBox.php';
+ require_once LOCALROOT . '\views\dashboard\components\smallBox.php';
  $box = new smallBox;
 
 ?>

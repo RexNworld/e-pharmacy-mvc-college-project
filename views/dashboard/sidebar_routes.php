@@ -13,7 +13,7 @@ class sidebar_routes{
     public function getRoutes(){
         
         return array(
-            ['/','fas fa-tachometer-alt','Dashboard'],
+            ['','fas fa-tachometer-alt','Dashboard'],
             ['users','fas fa-user','Users'],
             ['doctors','fas fa-user-md','Doctors'],
             ['orders','fas fa-cart-arrow-down','Orders'],

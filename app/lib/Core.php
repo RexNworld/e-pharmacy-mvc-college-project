@@ -11,6 +11,10 @@ class Core{
         $this->currentMethod = $routes->get();
         
         $url = $this->getUrl();
+        if($url === NULL){
+            $url[0] = '';
+        }
+
         //We are looking to our controllers for first value ucwords will capitalized first latter
         if(file_exists('./app/controllers/'.ucwords($url[0]).'.php')){
             // We will set a new controller
@@ -40,7 +44,7 @@ class Core{
         if(isset($_GET['url'])){
             $url = rtrim($_GET['url'],'/');
             $url = filter_var($url, FILTER_SANITIZE_URL);
-            $url = explode('/',$url);
+            $url = explode('/',$url); 
             return $url;
         }
     }

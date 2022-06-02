@@ -15,11 +15,11 @@
             <hr class="my-0">
             <hr>
             <?php
-                require_once '/../sidebar_routes.php';
+                require_once LOCALROOT . '\views\dashboard\sidebar_routes.php';
                 $routes = new sidebar_routes;
                 $sidebar = $routes->getRoutes();
                foreach($sidebar as $val => $value){
-                    if($sidebar[$val][0] == '/')
+                    if($sidebar[$val][0] == '')
                         $active = 'active';
                     else
                         $active = '';
