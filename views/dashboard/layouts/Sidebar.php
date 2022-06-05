@@ -15,7 +15,7 @@
             <hr class="my-0">
             <hr>
             <?php
-                require_once LOCALROOT . '\views\dashboard\sidebar_routes.php';
+                require_once PATH_ROOT . '\views\dashboard\sidebar_routes.php';
                 $routes = new sidebar_routes;
                 $sidebar = $routes->getRoutes();
                foreach($sidebar as $val => $value){
