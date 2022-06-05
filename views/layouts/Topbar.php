@@ -6,8 +6,9 @@
             <i class="bi bi-list"></i>
         </button>
 
-        <a href="/" class="navbar-brand brand-style"><img src="dist/img/e_pharmacy_light.png" alt="e-Pharmacy"
-                width="150" height="30" srcset="" class="d-inline-block align-text-top logo-navbar" /></a>
+        <a href="<?=URLROOT?>" class="navbar-brand brand-style"><img
+                src="<?=URLROOT?>/public/assets/img/e_pharmacy_light.png" alt="e-Pharmacy" width="150" height="30"
+                srcset="" class="d-inline-block align-text-top logo-navbar" /></a>
 
         <ul class="navbar-nav ml-auto d-block d-md-none">
             <li class="nav-item">

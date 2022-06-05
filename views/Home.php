@@ -1,3 +1,6 @@
+<?
+$url[0] = 'Something';
+?>
 <section style="padding-top: 0">
     <div class="container-fluid">
         <div class="row">
