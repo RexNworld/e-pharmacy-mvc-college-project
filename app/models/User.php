@@ -7,20 +7,64 @@ class User{
     }
 
     public function getUsers(){
-        $this->db->query("SELECT * FROM `users`");
+        $this->db->query("SELECT * FROM `e_users`");
         $result = $this->db->resultSet();
         return $result;
     }
 
-    public function register($data){
-        $sql = "INSERT INTO `e_users` (name,mobile,email,user_name,user_secret_id,password,user_register_datetime) VALUES(:name,:mobile,:email,:user_name,:user_secret_id,:pass,:date)";
+    public function getUser($id){
+        $this->db->query("SELECT * FROM `e_users` WHERE id = :id");
+        $this->db->bind(':id', $id);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function addUser(){
+        return false;
+    }
+
+    public function editUser($data){
+        $sql = "UPDATE `e_users` SET name = :name, mobile = :mobile, email = :email, user_type = :user_type, user_img = :user_img, status = :status, password = :pass WHERE id = :user_id";
+
         $this->db->query($sql);
+        
+        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':mobile', $data['mobile']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':user_type', $data['user_type']);
+        $this->db->bind(':user_img', $data['image']);
+        $this->db->bind(':status', $data['status']);
+        $this->db->bind(':pass', $data['pass']);
+        $this->db->bind(':user_id', $data['user_id']);
+
+        if($this->db->execute())
+            return true;
+        else
+            return false;
+    }
+    
+    public function deleteUser($data){
+        $this->db->query("DELETE FROM `e_users` WHERE id = :id");
+        $this->db->bind(':id', $data);
+
+        if($this->db->execute())
+            return true;
+        else
+            return false;
+    }
+
+    public function register($data){
+        $sql = "INSERT INTO `e_users` (name,mobile,email,user_name,user_img,user_secret_id,password,user_register_datetime) VALUES(:name,:mobile,:email,:user_name,:user_img,:user_secret_id,:pass,:date)";
+        $this->db->query($sql);
+        
+        $isImage = (empty($data['image'])) ? '' : $data['image']; 
         
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':mobile', ltrim($data['mobile'],'0'));
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':date', date('Y-m-d h:i:s', time()));
         $this->db->bind(':user_name', strstr($data['email'],'@', true));
+        $this->db->bind(':user_img', $isImage);
         $this->db->bind(':user_secret_id', sha1($data['email']));
         $this->db->bind(':pass', $data['pass']);
 
@@ -95,4 +139,3 @@ class User{
             return false;
     }
 }
-?>

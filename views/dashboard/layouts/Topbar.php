@@ -7,7 +7,13 @@
                 <div class="dropdown">
                     <button class="btn dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
+
+                        <?php if(!empty($_SESSION['user_img'])):?>
+                        <img src="<?= URLROOT.'/uploads/profile_images/'.$_SESSION['user_secret_name'].'/'.$_SESSION['user_img'] ?>"
+                            class="special-img">
+                        <?php else :?>
                         <img src="<?=URLROOT?>/public/assets/img/profile_pic.jpg" class="special-img">
+                        <?php endif;?>
                         <?php $name = explode(' ',$_SESSION['user_name']); echo $name[0];?>
                         <b class="caret"></b>
                     </button>
