@@ -33,7 +33,7 @@
                                 echo '<td>'.$user->email.'</td>';
                                 echo '<td>'.$user->mobile.'</td>';
                                 echo '<td>';
-                                    if($user->status !== 0)
+                                    if($user->status != 0)
                                         echo $user->user_type; 
                                     else
                                         echo '<span class="badge bg-danger">Suspend</span>';
@@ -103,8 +103,9 @@
                                 <div class="col-md-4">
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
-                                            <input class="inputs" type='file' id="imageUpload" name="image"
+                                            <input class="inputs" name="image" type='file' id="imageUpload"
                                                 accept=".png, .jpg, .jpeg" />
+
                                             <label class="labels" for="imageUpload"><i style="font-size:24px"
                                                     class="fa">&#xf044;</i>
                                             </label>

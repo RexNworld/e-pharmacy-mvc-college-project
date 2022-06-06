@@ -1,5 +1,14 @@
+<style>
+.image-error {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #e74a3b;
+}
+</style>
 <div class="container">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <div class="card shadow p-4 w-75 mx-auto">
             <div class="card-body">
                 <div class="row">
@@ -11,6 +20,13 @@
                                 hidden disabled>
                             <input type="text" class="form-control" placeholder="Name" aria-label="Name"
                                 aria-describedby="basic-addon1" name="name" value="<?= $data['userData'][0]->name ?>">
+                        </div>
+
+                        <div class="input-group py-2">
+                            <span class="input-group-text" id="basic-addon1">User Name</span>
+                            <input type="text" name="username" class="form-control" placeholder="User Name"
+                                aria-label="User Name" aria-describedby="basic-addon1"
+                                value="<?= $data['userData'][0]->user_name ?>" disabled>
                         </div>
 
                         <div class="input-group py-2">
@@ -38,14 +54,16 @@
                             <span class="input-group-text" id="basic-addon1">User Type</span>
                             <select class="form-select" name="user_type" aria-label="select user type" value="DOCTOR">
                                 <option value="SUPERADMIN"
-                                    <?= $data['userData'][0]->user_type === 'SUPERADMIN'? 'selected':'' ?>>SUPERADMIN
+                                    <?= $data['userData'][0]->user_type === 'SUPERADMIN'? 'selected':'' ?>>
+                                    SUPERADMIN
                                 </option>
                                 <option value="ADMIN" <?= $data['userData'][0]->user_type === 'ADMIN'? 'selected':'' ?>>
                                     ADMIN</option>
                                 <option value="STAFF" <?= $data['userData'][0]->user_type === 'STAFF'? 'selected':'' ?>>
                                     STAFF</option>
                                 <option value="DOCTOR"
-                                    <?= $data['userData'][0]->user_type === 'DOCTOR'? 'selected':'' ?>>DOCTOR</option>
+                                    <?= $data['userData'][0]->user_type === 'DOCTOR'? 'selected':'' ?>>DOCTOR
+                                </option>
                                 <option value="GUEST" <?= $data['userData'][0]->user_type === 'GUEST'? 'selected':'' ?>>
                                     GUEST</option>
                             </select>
@@ -71,10 +89,11 @@
                                         class="fa">&#xf044;</i>
                                 </label>
                             </div>
+
                             <div class="avatar-preview">
                                 <?php if(!empty($data['userData'][0]->user_img)):?>
                                 <div id="imagePreview"
-                                    style="background-image: url(<?= URLROOT.'/uploads/profile_images/'.$data['userData'][0]->user_name.'/'.$data['userData'][0]->user_img ?>);">
+                                    style="background-image: url(<?= URLROOT.'/uploads/'.$data['userData'][0]->user_img ?>);">
                                     <?php else :?>
                                     <div id="imagePreview"
                                         style="background-image: url(http://i.pravatar.cc/500?img=7);">
@@ -82,6 +101,9 @@
                                     <?php endif;?>
 
                                 </div>
+                                <span class="image-error">
+                                    <?php echo empty($data['imageError']) ? '' : $data['imageError']; ?>
+                                </span>
                             </div>
                         </div>
                     </div>

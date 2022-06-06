@@ -1,9 +1,11 @@
 <?php
 class Dashboard extends Controller{
 
+    private $uploader;
+    
     public function __construct(){
         $this->userModel = $this->model('User');
-        // $this->view('Header');
+        $this->uploader = new Uploader;
     }
     
     public function index(){
@@ -70,6 +72,7 @@ class Dashboard extends Controller{
                     'title' => 'Edit Users',
                     'userData' => $result,
                     'name' => '',
+                    'username' => '',
                     'email' => '',
                     'mobile' => '',
                     'pass' => '',
@@ -78,6 +81,7 @@ class Dashboard extends Controller{
                     'emailError' => '',
                     'mobileError' => '',
                     'passError' => '',
+                    'imageError' => [],
                   ];
 
                   if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editUser'])){
@@ -88,56 +92,92 @@ class Dashboard extends Controller{
                        $name = $_POST['name'];
                     }else
                        $name = $result[0]->name;
+
+                    if(isset($_POST['username']) && !empty(trim($_POST['username'])))
+                       $username = $_POST['username'];
+                   else
+                       $username = $result[0]->user_name;
+
                     if(isset($_POST['email']) && !empty(trim($_POST['email'])))
                         $email = $_POST['email'];
                     else
                         $email = $result[0]->mobile;
+
                     if(isset($_POST['mobile']) && !empty(trim($_POST['mobile'])))
                         $mobile = $_POST['mobile'];
                     else
                         $mobile = $result[0]->mobile;
+
                     if(isset($_POST['pass']) && !empty(trim($_POST['pass'])))
                         $pass = sha1($_POST['pass']);
                     else
                         $pass = $result[0]->password;
-                    if(isset($_POST['image']) && !empty(trim($_POST['image'])))
-                        $image = $_POST['image'];
-                    else
-                        $image = $result[0]->user_img;
+
                     if(isset($_POST['user_type']) && !empty(trim($_POST['user_type'])))
                         $user_type = $_POST['user_type'];
                     else
                         $user_type = $result[0]->user_type;
+                        
                     if(isset($_POST['status']) && !empty(trim($_POST['status'])))
                         $status = $_POST['status'];
                     else
                         $status = $result[0]->status;
-                        
+                   
                     $data = [
-                      'user_id' => $url[2],
-                      'name' => $name,
-                      'email' => $email,
-                      'mobile' => $mobile,
-                      'pass' => $pass,
-                      'image' => $image,
-                      'user_type' => $user_type,
-                      'status' => $status,
-                      'nameError' => '',
-                      'emailError' => '',
-                      'mobileError' => '',
-                      'passError' => '',
-                    ];
+                        'user_id' => $url[2],
+                        'name' => $name,
+                        'email' => $email,
+                        'username' => $username,
+                        'mobile' => $mobile,
+                        'pass' => $pass,
+                        'user_type' => $user_type,
+                        'status' => $status,
+                        'image' => '',
+                        'nameError' => '',
+                        'emailError' => '',
+                        'mobileError' => '',
+                        'passError' => '',
+                        'imageError' => '',
+                        ];
+                    try{
+                        if(!$_FILES){
+                            throw new UnexpectedValueException('There was a problem with the upload');
+                        }
+                    }catch(Exception $exec){
+                        echo $exec->getMessage();
+                        exit();
+                    }
 
-                    if(empty($data['nameError'])&&empty($data['emailError'])&&empty($data['mobileError'])&&empty($data['passError'])){
-                        if($this->userModel->editUser($data)){
-                            header('Location: '.$_SERVER['REQUEST_URI']);
+                    if(empty($data['nameError'])&&empty($data['emailError'])&&empty($data['mobileError'])&&empty($data['passError']) && empty($data['imageError'])){
+
+                        if($_FILES['image']['name'] && $_FILES['image']['name']){
+                            $uploadResult = $this->uploader->upload($_FILES['image'],$data['username'],'profile_images');
+                            $data['image'] = 'profile_images'.'/'.$result[0]->user_name.'/'.$uploadResult[0];
                         }else{
+                            $data['image'] = $result[0]->user_img;
+                            $uploadResult[0] = '';
+                            $uploadResult[1] = 1;
+                        }
+                        // die();
+                        if($uploadResult[1] !==  0){
+                            if($this->userModel->editUser($data)){
+                                header('Location: '.$_SERVER['REQUEST_URI']);
+                            }else{
+                                $data = [
+                                    'title' => 'Edit Users',
+                                    'userData' => $result,
+
+                                ];
+                                echo '<script>alert("Somethning Went wrong PLease try agan")</script>';
+                            }
+                        }
+                        else{
                             $data = [
                                 'title' => 'Edit Users',
                                 'userData' => $result,
+                                'imageError' => $uploadResult[0],
                             ];
-                            echo '<script>alert("Hellow Sexy")</script>';
-                        }
+                            }
                     }
                   }
                 $this->view('userEdit', $data);
@@ -146,6 +186,10 @@ class Dashboard extends Controller{
                 $this->view('404', $data);
           }elseif(isset($url[1]))
             $this->view('users', $data);
+    }
+
+    public function productDetails(){
+        $this->view('productDetails');
     }
 
     public function doctors(){
