@@ -24,6 +24,10 @@ class Routes{
                 return 'user';
             case 'product':
                 return 'index';
+            case 'category':
+                return 'category';
+            case 'product_details':
+                return 'product_details';
             case 'register':
                 return 'register';
             case 'login':

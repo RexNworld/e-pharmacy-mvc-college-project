@@ -16,6 +16,20 @@ class Pages extends Controller{
     public function about(){
         $this->view('About');        
     }
+
+    public function product_details(){
+      $this->view('Product_details');        
+  }
+
+    public function category(){
+      $data = [
+        'title' => 'Category',
+        'termname'=> 'Medicine One',
+        'count'=> '250',
+
+      ];
+      $this->view('Category',$data);        
+  }
    
     public function errorPage(){
         $this->view('404');
