@@ -199,6 +199,7 @@ class Pages extends Controller{
       $_SESSION['user_name'] = $user->name;
       $_SESSION['user_email'] = $user->email;
       $_SESSION['user_type'] = $user->user_type;
+      $_SESSION['user_img'] = $user->user_img;
       $_SESSION['user_status'] = $user->status;
       $_SESSION['user_secret_name'] = $user->user_name;
       $_SESSION['user_secret_id'] = $user->user_secret_id;
