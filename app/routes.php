@@ -28,6 +28,8 @@ class Routes{
                 return 'category';
             case 'product_details':
                 return 'product_details';
+            case 'profile':
+                return 'profile';
             case 'register':
                 return 'register';
             case 'login':

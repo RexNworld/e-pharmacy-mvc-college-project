@@ -30,6 +30,10 @@ class Pages extends Controller{
       ];
       $this->view('Category',$data);        
   }
+
+  public function profile(){
+    $this->view('user_profile');        
+}
    
     public function errorPage(){
         $this->view('404');
