@@ -4,7 +4,7 @@
 
             <?php
                 // if($data['allUser']->user_type == 'SUPERADMIN'){
-                    echo '<button class="btn d-inline btn-warning" data-bs-toggle="modal" data-bs-target="#addUser" style="float:">Add User</button>';
+                    echo '<a href="adduser" class="btn d-inline btn-warning" style="float:">Add User</a>';
                 // }
             ?>
         </div>
@@ -55,83 +55,8 @@
             </table>
         </div>
     </div>
-    <!-- for add user model box -->
-    <div class="modal fade" id="addUser" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addUserLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addUserLabel">Add User</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form method="POST">
 
-                    <div class="modal-body">
-                        <dv class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="input-group py-2">
-                                        <span class="input-group-text" id="basic-addon1">Name</span>
-                                        <input type="text" class="form-control" placeholder="Jhon Lee" aria-label="Name"
-                                            aria-describedby="basic-addon1" name="name">
-                                    </div>
-
-                                    <div class="input-group py-2">
-                                        <span class="input-group-text" id="basic-addon1">E-mail</span>
-                                        <input type="text" class="form-control" placeholder="xyz@gmail.com"
-                                            aria-label="E-mail" aria-describedby="basic-addon1" name="email">
-                                    </div>
-
-                                    <div class="input-group py-2">
-                                        <span class="input-group-text" id="basic-addon1">Phone no.</span>
-                                        <input type="text" class="form-control" placeholder="+91 ----- -----"
-                                            aria-label="Phone no." aria-describedby="basic-addon1" name="mobile">
-                                    </div>
-
-                                    <div class="input-group py-2">
-                                        <span class="input-group-text" id="basic-addon1">Address</span>
-                                        <textarea class="form-control" placeholder="Delhi...." aria-label="Address"
-                                            aria-describedby="basic-addon1" name="address"></textarea>
-                                    </div>
-
-                                    <div class="input-group py-2">
-                                        <span class="input-group-text" id="basic-addon1">Password</span>
-                                        <input type="text" class="form-control" placeholder="******"
-                                            aria-label="Password" aria-describedby="basic-addon1" name="pass">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="avatar-upload">
-                                        <div class="avatar-edit">
-                                            <input class="inputs" name="image" type='file' id="imageUpload"
-                                                accept=".png, .jpg, .jpeg" />
-
-                                            <label class="labels" for="imageUpload"><i style="font-size:24px"
-                                                    class="fa">&#xf044;</i>
-                                            </label>
-                                        </div>
-                                        <div class="avatar-preview">
-                                            <div id="imagePreview"
-                                                style="background-image: url(http://i.pravatar.cc/500?img=7);">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </dv>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <input type="submit" name="adduser" id="adduser" class="btn btn-primary" value="Add user" />
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-
-    <script>
+<script>
     $(document).ready(function() {
         $('#userTable').DataTable({
             pageLength: 25,

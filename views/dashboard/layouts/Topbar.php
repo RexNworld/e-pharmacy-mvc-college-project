@@ -21,7 +21,7 @@
                         <?php if($_SESSION['user_type'] == 'SUPERADMIN') :?>
                         <a class="dropdown-item" href="dashboard">Dashboard</a>
                         <?php endif;?>
-                        <a class="dropdown-item" href="logout">Logout</a>
+                        <a class="dropdown-item" href="<?=URLROOT?>/logout">Logout</a>
                     </div>
                 </div>
 
