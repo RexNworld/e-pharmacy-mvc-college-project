@@ -83,7 +83,7 @@ class Dashboard extends Controller{
             if(empty($data['nameError'])&&empty($data['emailError'])&&empty($data['mobileError'])&&empty($data['passError'])){
               
                 if($_FILES['image']['name'] && $_FILES['image']['name']){
-                    $uploadResult = $this->uploader->upload($_FILES['image'],strstr($data['email'],'@', true),'profile_images');
+                    $uploadResult = $this->uploader->upload($_FILES['image'],strstr($data['email'],'@', true) ,'profile_images');
                     $data['image'] = 'profile_images'.'/'.strstr($data['email'],'@', true).'/'.$uploadResult[0];
                 }else{
                     $data['image'] = $result[0]->user_img;
