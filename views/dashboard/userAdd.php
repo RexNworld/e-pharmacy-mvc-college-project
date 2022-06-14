@@ -17,47 +17,53 @@
                             <span class="input-group-text" id="basic-addon1">Name</span>
                             <input type="text" class="form-control" placeholder="Jhon Lee" aria-label="Name"
                                 aria-describedby="basic-addon1" name="name" value="<?=$data['name']?>" required>
-                                <span style="width: 100%;color: red;font-style: italic;"><?=$data['nameError']?></span>
-                            </div>
+                            <span style="width: 100%;color: red;font-style: italic;"><?=$data['nameError']?></span>
+                        </div>
 
                         <div class="input-group py-2">
                             <span class="input-group-text" id="basic-addon1">E-mail</span>
                             <input type="text" class="form-control" placeholder="xyz@gmail.com" aria-label="E-mail"
                                 aria-describedby="basic-addon1" name="email" value="<?=$data['email']?>" required>
-                                <span style="width: 100%;color: red;font-style: italic;"><?=$data['emailError']?></span>
-                            </div>
-                            
+                            <span style="width: 100%;color: red;font-style: italic;"><?=$data['emailError']?></span>
+                        </div>
+
 
                         <div class="input-group py-2">
                             <span class="input-group-text" id="basic-addon1">Phone no.</span>
-                            <input type="text" class="form-control" placeholder="Your mobile number" aria-label="Phone no."
-                                aria-describedby="basic-addon1" name="mobile" value="<?=$data['mobile']?>" required>
-                                <span style="width: 100%;color: red;font-style: italic;"><?=$data['mobileError']?></span>
-                            </div>
+                            <input type="text" class="form-control" placeholder="Your mobile number"
+                                aria-label="Phone no." aria-describedby="basic-addon1" name="mobile"
+                                value="<?=$data['mobile']?>" required>
+                            <span style="width: 100%;color: red;font-style: italic;"><?=$data['mobileError']?></span>
+                        </div>
 
                         <div class="input-group py-2">
                             <span class="input-group-text" id="basic-addon1">User Type</span>
                             <select class="form-select" name="user_type" aria-label="select user type" value="DOCTOR">
-                                <option value="GUEST" <?= $data['user_type'] === 'GUEST'? 'selected':'' ?>>GUEST</option>
-                                <option value="DOCTOR" <?= $data['user_type'] === 'DOCTOR'? 'selected':'' ?>>DOCTOR</option>
-                                <option value="STAFF" <?= $data['user_type'] === 'STAFF'? 'selected':'' ?>>STAFF</option>
-                                <option value="ADMIN" <?= $data['user_type'] === 'ADMIN'? 'selected':'' ?>>ADMIN</option>
+                                <option value="GUEST" <?= $data['user_type'] === 'GUEST'? 'selected':'' ?>>GUEST
+                                </option>
+                                <option value="DOCTOR" <?= $data['user_type'] === 'DOCTOR'? 'selected':'' ?>>DOCTOR
+                                </option>
+                                <option value="STAFF" <?= $data['user_type'] === 'STAFF'? 'selected':'' ?>>STAFF
+                                </option>
+                                <option value="ADMIN" <?= $data['user_type'] === 'ADMIN'? 'selected':'' ?>>ADMIN
+                                </option>
                                 <?php if($_SESSION['user_type'] === 'SUPERADMIN'):?>
-                                <option value="SUPERADMIN" <?= $data['user_type'] === 'SUPERADMIN'? 'selected':'' ?>>SUPERADMIN</option>
+                                <option value="SUPERADMIN" <?= $data['user_type'] === 'SUPERADMIN'? 'selected':'' ?>>
+                                    SUPERADMIN</option>
                                 <?php endif;?>
 
                             </select>
                         </div>
 
-                        
+
 
                         <div class="input-group py-2">
                             <span class="input-group-text" id="basic-addon1">Password</span>
                             <input type="text" class="form-control" placeholder="******" aria-label="Password"
                                 aria-describedby="basic-addon1" name="pass" required>
-                                <span style="width: 100%;color: red;font-style: italic;"><?=$data['passError']?></span>
+                            <span style="width: 100%;color: red;font-style: italic;"><?=$data['passError']?></span>
                         </div>
-                        
+
 
                     </div>
                     <div class="col-md-4">
@@ -80,8 +86,7 @@
                         </div>
                     </div>
                     <div class="card footer">
-                        <input type="submit" name="addUser" id="adduser" class="btn btn-primary"
-                            value="Save Changes" />
+                        <input type="submit" name="addUser" id="adduser" class="btn btn-primary" value="Save Changes" />
 
                     </div>
                 </div>

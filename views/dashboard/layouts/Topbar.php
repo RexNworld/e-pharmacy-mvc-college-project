@@ -3,7 +3,7 @@
         <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
             <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3"
                     id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                <h3 class="text-dark mb-1"><?=ucwords(isset($url[1]) ? $url[1] : $url[0])?></h3>
+                <h3 class="text-dark mb-1"><?=ucwords($data['title'])?></h3>
                 <div class="dropdown">
                     <button class="btn dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">

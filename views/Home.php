@@ -2,7 +2,7 @@
 $url[0] = 'Something';
 ?>
 <section style="padding-top: 0">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-md-9">
                 <div id="carouselExampleIndicators" class="carousel slide shadow-sm bg-body rounded"
@@ -83,7 +83,7 @@ $url[0] = 'Something';
     </div>
 </section>
 <section style="margin: 0">
-    <div class="container-fluid">
+    <div class="container">
         <h3>Shop by health conditions</h3>
         <hr />
         <div class="carousel-wrapper">
@@ -181,24 +181,12 @@ $url[0] = 'Something';
                     </a>
                 </div>
             </div>
-            <!-- <div class="owl-nav">
-            <button
-              type="button"
-              role="presentation"
-              class="owl-nav-button owl-prev top-0 category-prev"
-            ></button>
-            <button
-              type="button"
-              role="presentation"
-              class="owl-nav-button owl-next top-0 category-next"
-            ></button>
-          </div> -->
         </div>
     </div>
 </section>
 
 <section>
-    <div class="container-fluid">
+    <div class="container">
         <h3>Shop by health conditions</h3>
         <hr />
 

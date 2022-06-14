@@ -5,11 +5,17 @@ class Dashboard extends Controller{
     
     public function __construct(){
         $this->userModel = $this->model('User');
+        $this->medcineModel = $this->model('Medicine');
         $this->uploader = new Uploader;
     }
     
     public function index(){
-            $this->view('index');
+            $users = $this->userModel->getUsers();
+            $data = [
+                'title' => 'Dashboard',
+                'allUser' => $users,
+            ];
+            $this->view('index', $data);
     }
     public function adduser(){
         $data = [
@@ -31,6 +37,7 @@ class Dashboard extends Controller{
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
+                'title' => 'Add User',
               'name' => trim($_POST['name']),
               'email' => trim($_POST['email']),
               'mobile' => trim($_POST['mobile']),
@@ -82,26 +89,22 @@ class Dashboard extends Controller{
               }
             if(empty($data['nameError'])&&empty($data['emailError'])&&empty($data['mobileError'])&&empty($data['passError'])){
               
-                if($_FILES['image']['name'] && $_FILES['image']['name']){
+                if($_FILES['image']['name']){
                     $uploadResult = $this->uploader->upload($_FILES['image'],strstr($data['email'],'@', true) ,'profile_images');
                     $data['image'] = 'profile_images'.'/'.strstr($data['email'],'@', true).'/'.$uploadResult[0];
                 }else{
-                    $data['image'] = $result[0]->user_img;
+                    $data['image'] = 'profile_images/default.jpg';
                     $uploadResult[0] = '';
                     $uploadResult[1] = 1;
                 }
               
                 $tempPassword = $data['pass'];
-              $data['pass'] = sha1($data['pass']);
-
+                $data['pass'] = sha1($data['pass']);
 
               if($this->userModel->register($data)){
                   header('Location: '.$_SERVER['REQUEST_URI']);
               }else{
-                  $data = [
-                      'title' => 'Users',
-                      'allUser' => $users,
-                  ];
+                  $data['allUser'] = $users;
                   echo '<script>alert("Something Went wrong. Please Re open your browser")</script>';
               }
           }
@@ -136,7 +139,7 @@ class Dashboard extends Controller{
           if(isset($url[2])){
             if($result = $this->userModel->getUser($url[2])){
                 $data = [
-                    'title' => 'Edit Users',
+                    'title' => 'Edit Users - '.$result[0]->name,
                     'userData' => $result,
                     'name' => '',
                     'username' => '',
@@ -191,6 +194,7 @@ class Dashboard extends Controller{
                         $status = $result[0]->status;
                    
                     $data = [
+                        'title' => 'Edit User - '. $name,
                         'user_id' => $url[2],
                         'name' => $name,
                         'email' => $email,
@@ -230,21 +234,12 @@ class Dashboard extends Controller{
                             if($this->userModel->editUser($data)){
                                 header('Location: '.$_SERVER['REQUEST_URI']);
                             }else{
-                                $data = [
-                                    'title' => 'Edit Users',
-                                    'userData' => $result,
-
-                                ];
                                 echo '<script>alert("Somethning Went wrong PLease try agan")</script>';
                             }
                         }
                         else{
-                            $data = [
-                                'title' => 'Edit Users',
-                                'userData' => $result,
-                                'imageError' => $uploadResult[0],
-                            ];
-                            }
+                            $data['imageError'] = $uploadResult[0];
+                        }
                     }
                   }
                 $this->view('userEdit', $data);
@@ -260,15 +255,173 @@ class Dashboard extends Controller{
     }
 
     public function doctors(){
-        $this->view('doctors');
+        $data['title'] = 'Doctors List';
+        $this->view('doctors',$data);
     }
 
     public function orders(){
-        $this->view('orders');
+        $data['title'] = 'Order List';
+        $this->view('orders',$data);
     }
 
     public function medicine(){
-        $this->view('medicine');
+        $data=[
+            'title' => 'Medicine List',
+            'categoryList'=> $this->medcineModel->getCategories(),
+            'medicineList'=> $this->medcineModel->getMedicine(),
+            'c_name'=>'',
+            'c_slug'=>'',
+            'c_image'=>'',
+            'c_Error'=>'',
+            'c_imageError'=>'',
+        ];
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data['c_name'] = trim($_POST['c_name']);
+            $data['c_slug'] = trim($_POST['c_slug']);
+            $data['c_image'] = trim($_FILES['c_image']['name']);
+
+            if(empty($data['c_name']))
+                $data['c_Error'] = "Please enter Category Name before add";
+            elseif($this->medcineModel->findExistingCategory($data['c_slug']))
+                $data['c_Error'] = "Entered Category Allready Exsists";
+
+            if(empty($data['c_name']))
+                $data['c_imageError'] = "Category required an Image";
+
+                if(empty($data['c_Error']) && empty($data['c_imageError'])){
+                if($_FILES['c_image']['name']){
+                    $uploadResult = $this->uploader->upload($_FILES['c_image'],$data['c_slug'],'category_images');
+                    $data['c_image'] = 'category_images'.'/'.$data['c_slug'].'/'.$uploadResult[0];
+                }else{
+                    $data['c_image'] = 'category_images/default.jpg';
+                    $uploadResult[0] = '';
+                    $uploadResult[1] = 1;
+                }
+                if($uploadResult[1] !==  0){
+                    if($this->medcineModel->addCategory($data)){
+                        header('Location: '.$_SERVER['REQUEST_URI']);
+                    }else{
+                        echo '<script>alert("Something Went wrong. Please Re open your browser")</script>';
+                    }
+                }else{
+                    $data['c_imageError'] = $uploadResult[0];
+                }
+            }
+        }
+
+        $this->view('medicine',$data);
+    }
+
+    public function addMedicine(){
+        $data=[
+            'title' => 'Add Medicine',
+            'categoryList'=> $this->medcineModel->getCategories(),
+            
+            'm_name'=>'',
+            'name_slug'=>'',
+            'm_short_dec'=>'',
+            'm_price'=>'',
+            'm_m_price'=>'',
+            'm_p_date'=>'',
+            'm_e_date'=>'',
+            'm_stock'=>'',
+            'm_description'=>'',
+            'm_image'=>'',
+            'm_categories' => '',
+            
+            'm_nameError'=>'',
+            'm_short_decError'=>'',
+            'm_imageError'=>'',
+            'm_priceError'=>'',
+            'm_m_priceError'=>'',
+            'm_p_dateError'=>'',
+            'm_e_dateError'=>'',
+            'm_stockError'=>'',
+            'm_descriptionError'=>'',
+            'm_categoriesError'=>'',
+        ];
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data['m_name'] = trim($_POST['m_name']);
+            $data['name_slug'] = str_replace(' ', '-',strtolower(trim($_POST['m_name'])));
+            $data['m_short_dec'] = trim($_POST['m_short_dec']);
+            $data['m_price'] = trim($_POST['m_price']);
+            $data['m_m_price'] = trim($_POST['m_m_price']);
+            $data['m_p_date'] = trim($_POST['m_p_date']);
+            $data['m_e_date'] = trim($_POST['m_e_date']);
+            $data['m_stock'] = trim($_POST['m_stock']);
+            $data['m_description'] = trim($_POST['m_description']);
+            if(isset($_POST['m_categories'])){
+                foreach ($_POST['m_categories'] as $x)
+                    $tagArray[] =  $x;
+                $data['m_categories'] = implode(',',$tagArray);
+            }
+            if(empty($data['m_categories'])){
+                $data['m_categoriesError'] = "Please Select at least One Category";
+            }
+            if(empty($data['m_name']))
+                $data['m_nameError'] = "Please Enter The Name of the product";
+            elseif($this->medcineModel->findExistingMedicine($data['name_slug']))
+                $data['m_nameError'] = "Entered Medicine Allready Exsists";
+
+            // if (count(array_filter($_FILES['upload_file']['name'])) < 3) 
+            if (empty(array_filter($_FILES['upload_file']['name']))) 
+                $data['m_imageError'] = 'Please Select at least 3 Image of the product';
+
+            if(empty($data['m_short_dec']) && strlen($data['m_short_dec']) < 3)
+                $data['m_short_decError'] = "Please provide a small description about the product";
+            
+            if(empty($data['m_price']))
+                $data['m_priceError'] = "Please enter Maximum retail price";
+            if(empty($data['m_m_price']))
+                $data['m_m_priceError'] = "Please enter Maximum retail price";
+
+            if(empty($data['m_p_date']))
+                $data['m_p_dateError'] = "Please provide Pakeging date of the Product";
+            if(empty($data['m_e_date']))
+                $data['m_e_dateError'] = "Please provide Expiry date of the Product";
+
+            if(empty($data['m_stock']))
+                $data['m_stockError'] = "Please enter total stock of the product";
+            
+            if(empty($data['m_description']))
+                $data['m_descriptionError'] = "Please enter more details about the product";
+            
+                if(empty($data['m_nameError']) && empty($data['m_imageError']) && empty($data['m_short_decError']) && empty($data['m_priceError']) && empty($data['m_m_priceError']) && empty($data['m_p_dateError']) && empty($data['m_e_dateError'])&& empty($data['m_stockError'])&& empty($data['m_descriptionError']) ){
+                if($_FILES['upload_file']['name']){
+                    if(!empty(array_filter($_FILES['upload_file']['name']))){
+                        $uploadResult = $this->uploader->uploadAll($_FILES['upload_file'],date("Y").'/'.date('m'),'medicine_images');
+                        foreach ($uploadResult as $x){
+                            $imageArray[] = 'medicine_images'.'/'.date("Y").'/'.date('m').'/'.$x[0];
+                            if($x[1] !== 1){
+                                $uploadResult[0]  = $x[0];
+                                $uploadResult[1] = 0;
+                            }
+                        }
+                        $data['m_image'] = implode(',',$imageArray);
+                    }
+                }else{
+                    $data['m_image'] = 'category_images/default.jpg';
+                    $uploadResult[0] = '';
+                    $uploadResult[1] = 1;
+                }
+                if($uploadResult[1] !==  0){
+                    if($this->medcineModel->addMedicine($data)){
+                        header('Location: '.$_SERVER['REQUEST_URI']);
+                    }else{
+                        echo '<script>alert("Something Went wrong. Please Re open your browser")</script>';
+                    }
+                }else{
+                    $data['m_imageError'] = $uploadResult[0];
+                }
+            }
+        }
+        $this->view('addMedicine',$data);
     }
 
     public function appointment(){

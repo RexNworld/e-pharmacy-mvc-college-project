@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="row">
         <?php 
-        $box->box('250','Change Me','fas fa-user-plus','bg-info','link'); 
+        $box->box(count($data['allUser']),'Total User','fas fa-user-plus','bg-info','link'); 
         $box->box('15','Change Me','fas fa-shopping-bag','bg-success','link'); 
         $box->box('5','Appointment','fas fa-calendar-day','bg-warning','link'); 
         $box->box('10','Feedback','fas fa-comment-dots','bg-danger','link'); 
@@ -64,22 +64,18 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">First</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach ( array_slice(array_reverse($data['allUser']), 0, 8, true) as $user ):?>
                             <tr>
-                                <td scope="row">1</td>
-                                <td>Mark</td>
+                                <td scope="row"><?=$user->id?></td>
+                                <td><?=$user->name?></td>
+                                <td><?=$user->email?></td>
                             </tr>
-                            <tr>
-                                <td scope="row">2</td>
-                                <td>Jacob</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">3</td>
-                                <td>Larry the Bird</td>
-                            </tr>
+                            <?php endforeach;?>
                         </tbody>
                     </table>
                 </div>

@@ -28,21 +28,25 @@ class Uploader{
              'message' => '',
              'error' => FALSE,
          ];
-        //  foreach ($normalizeFiles as $normalizeFile){
-            //  var_dump($normalizeFile);
              $uploadResult = $this->uploadFile($normalizeFiles,$username,$posttype);
-
                 if($uploadResult[1] !== 1){
                     return $uploadResult;
                 }
                 else{
                     return $uploadResult;
                 }
-        //  }
             $result = empty($errors) ? $uploadResult : $errors;
-            
          return ($result);
      }
+
+     public function uploadAll(array $files = [],$username,$posttype){
+        $normalizeFiles = $this->normalizeFilesArray($files);
+        foreach ($normalizeFiles as $normalizeFile){
+            $uploadResult[] = $this->uploadFile($normalizeFile,$username,$posttype);
+        }
+        $result = empty($errors) ? $uploadResult : $errors;
+        return ($result);
+    }
 
      /**
      * Normalize the files list.

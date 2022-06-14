@@ -93,8 +93,8 @@
                 <div class="col-md-5 col-12">
                     <div class="picture-container">
                         <div class="picture">
-                            <img src="https://stahnu.cz/data/stahnu.cz/appimages/54/54737.jpg"
-                                class="picture-src" id="wizardPicturePreview" title="">
+                            <img src="https://stahnu.cz/data/stahnu.cz/appimages/54/54737.jpg" class="picture-src"
+                                id="wizardPicturePreview" title="">
                             <input type="file" id="wizard-picture" class="">
                         </div>
                         <div class="row">

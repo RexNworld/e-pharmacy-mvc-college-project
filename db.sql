@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2022 at 01:51 AM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Jun 14, 2022 at 02:21 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,6 +29,7 @@ USE `e_pharmacy`;
 -- Table structure for table `admin`
 --
 
+DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `Id` int(100) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -59,6 +60,7 @@ INSERT INTO `admin` (`Id`, `Name`, `Address`, `Gender`, `Ph_no`, `DOB`, `Positio
 -- Table structure for table `appointment`
 --
 
+DROP TABLE IF EXISTS `appointment`;
 CREATE TABLE `appointment` (
   `Id` int(255) NOT NULL,
   `Image` blob NOT NULL,
@@ -84,6 +86,7 @@ INSERT INTO `appointment` (`Id`, `Image`, `Name`, `Category`, `Dr_name`, `Date`,
 -- Table structure for table `card`
 --
 
+DROP TABLE IF EXISTS `card`;
 CREATE TABLE `card` (
   `Name` varchar(255) NOT NULL,
   `Card_no` varchar(255) NOT NULL,
@@ -97,6 +100,7 @@ CREATE TABLE `card` (
 -- Table structure for table `doctor`
 --
 
+DROP TABLE IF EXISTS `doctor`;
 CREATE TABLE `doctor` (
   `Id` int(255) NOT NULL,
   `Profile_pic` blob NOT NULL,
@@ -122,9 +126,67 @@ INSERT INTO `doctor` (`Id`, `Profile_pic`, `Name`, `DOB`, `Ph_no`, `E-mail`, `Ca
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `e_category`
+--
+
+DROP TABLE IF EXISTS `e_category`;
+CREATE TABLE `e_category` (
+  `id` int(11) NOT NULL,
+  `c_name` varchar(150) NOT NULL,
+  `c_tag` varchar(100) NOT NULL,
+  `c_img` varchar(100) NOT NULL,
+  `c_date` date NOT NULL,
+  `status` enum('0','1') NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `e_category`
+--
+
+INSERT INTO `e_category` (`id`, `c_name`, `c_tag`, `c_img`, `c_date`, `status`) VALUES
+(1, 'Covid Care', 'covid-care', 'category_images/covid-care/7232c31ce6d61a09442b34da40377f1ac8b85cbb.png', '2022-06-13', '1'),
+(2, 'Diabetes Care', 'diabetes-care', 'category_images/diabetes-care/f285fc0de23aab6e51d1d71c86cbdd9c14aae610.png', '2022-06-13', '1'),
+(3, 'Mind Care', 'mind-care', 'category_images/mind-care/3f6298a0fd2f44c0882131518464a730b70787ed.png', '2022-06-14', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `e_medicine`
+--
+
+DROP TABLE IF EXISTS `e_medicine`;
+CREATE TABLE `e_medicine` (
+  `id` int(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `name_slug` varchar(200) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `s_price` int(100) NOT NULL,
+  `m_price` int(100) NOT NULL,
+  `categories` varchar(255) NOT NULL,
+  `packaging_date` date NOT NULL,
+  `expiry_date` date NOT NULL,
+  `short_dec` varchar(255) NOT NULL,
+  `long_dec` varchar(255) NOT NULL,
+  `stock` int(255) NOT NULL,
+  `date` date NOT NULL,
+  `action` enum('0','1') NOT NULL DEFAULT '1'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `e_medicine`
+--
+
+INSERT INTO `e_medicine` (`id`, `name`, `name_slug`, `image`, `s_price`, `m_price`, `categories`, `packaging_date`, `expiry_date`, `short_dec`, `long_dec`, `stock`, `date`, `action`) VALUES
+(22, 'Test Product', 'test-product', 'medicine_images/2022/06/247d618d37d00f061b23174438a0242da4e96d4f.png,medicine_images/2022/06/fe95239aacea1af1eed442e70c4b0360df3cc79a.png,medicine_images/2022/06/bc287ce32d4c6ca32d0932ded8af25ab89b07346.png,medicine_images/2022/06/90357f257cb0a6efe02428f9', 221, 123, 'something', '2022-06-14', '0013-03-21', 'Something', '123', 123, '2022-06-14', '1'),
+(23, 'asd', 'asd', 'medicine_images/2022/06/83650f0d07988e67f69f27b54202dabc3fdd0c22.png,medicine_images/2022/06/98def51e050859e5210676bfb71d917e93ffe353.png,medicine_images/2022/06/1fd18105875457c0027b7a201c08df977472c8fe.png,medicine_images/2022/06/cb506a779b9fba0c751a918c', 213, 12312, 'Covid Care,Diabetes Care,Mind Care', '2022-06-20', '2022-06-22', 'asdasd', 'jkhg', 10, '2022-06-14', '1');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `e_subscription_user`
 --
 
+DROP TABLE IF EXISTS `e_subscription_user`;
 CREATE TABLE `e_subscription_user` (
   `sl_subscription_users` int(11) NOT NULL,
   `first_name` varchar(200) NOT NULL,
@@ -162,6 +224,7 @@ CREATE TABLE `e_subscription_user` (
 -- Table structure for table `e_users`
 --
 
+DROP TABLE IF EXISTS `e_users`;
 CREATE TABLE `e_users` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
@@ -185,7 +248,7 @@ INSERT INTO `e_users` (`id`, `name`, `mobile`, `email`, `user_name`, `user_img`,
 (50, 'user', '961444645951', 'admin@dcitsoft.com', 'admin', 'profile_images/admin/cea5780d710ec0c094d7eb8e58e8cffe02cb7019.jpg', 'b9f32509a6d32e93056ac66ef032382ce9a54ec2', 'GUEST', 'd1d86777ef69e86aa2651b9fff86300ddceaf215', '2022-06-01 02:11:21', '2022-05-31 11:09:36', '1'),
 (49, 'Naresh kaswan', '9987755654', 'naresh18@gmail.com', 'naresh18', NULL, 'a28457fa7a1223bada4af37ba25988d187503782', 'GUEST', '76d44a046de6fa81696cc2859ed83aac267ac6ce', NULL, '2022-05-31 11:05:32', '1'),
 (48, 'Rockey singh', '8578924272', 'kumarrockey18@gmail.com', 'kumarrockey18', NULL, '42eaa9b6bf92cde65299a1e4989d6d49fd846781', 'SUPERADMIN', 'cf2e875d70c402e4aaf32ceb64b1fa6f7396af59', '2022-06-10 11:46:36', '2022-05-31 10:59:12', '1'),
-(47, 'Reshav', '9614464594', 'reshav.sahani.9@gmail.com', 'reshav.sahani.9', NULL, 'e733e9a3da6a4d6ec8b0cead022fd1cfd5ecbf75', 'SUPERADMIN', 'd1d86777ef69e86aa2651b9fff86300ddceaf215', '2022-06-06 01:27:08', '2022-05-31 09:18:00', '1'),
+(47, 'Reshav', '9614464594', 'reshav.sahani.9@gmail.com', 'reshav.sahani.9', 'profile_images/reshav.sahani.9/ed8cbff29f40218f71f615afcd373a21e32e0b68.jpg', 'e733e9a3da6a4d6ec8b0cead022fd1cfd5ecbf75', 'SUPERADMIN', 'd1d86777ef69e86aa2651b9fff86300ddceaf215', '2022-06-12 11:06:57', '2022-05-31 09:18:00', '1'),
 (51, 'abhisek kamti', '9504323182', 'abhisek@dcitsoft.com', 'abhisek', NULL, '1e74ea973e0274fe72145159551fe6f834a1d37b', 'GUEST', '7c031171466dd3faf66235f48467dcedd40b683a', '2022-05-31 11:11:55', '2022-05-31 11:11:55', '1'),
 (52, 'Abhinita Saha', '8617244636', 'abhinita@gmail.com', 'abhinita', NULL, '265ea4af353ba8a39dfc0d52af09a055ca7659d7', 'GUEST', 'f7b9648245b0b34169b8eb3c7e194f0043de4842', '2022-06-01 06:34:44', '2022-06-01 06:33:25', '1'),
 (53, 'Rockey Kumar Singh', '+918578924272', 'kumarrockey18@gmail.coma', 'kumarrockey18', '', '38af29f3e1e913f9f1ba9027b128f1fc5768542b', 'GUEST', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', NULL, '2022-06-11 02:41:57', '1'),
@@ -197,6 +260,7 @@ INSERT INTO `e_users` (`id`, `name`, `mobile`, `email`, `user_name`, `user_img`,
 -- Table structure for table `feedback`
 --
 
+DROP TABLE IF EXISTS `feedback`;
 CREATE TABLE `feedback` (
   `Id` int(255) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -223,56 +287,10 @@ INSERT INTO `feedback` (`Id`, `Name`, `E-mail`, `Feedback`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `medicine`
---
-
-CREATE TABLE `medicine` (
-  `Image` varchar(255) NOT NULL,
-  `Id` int(255) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Price` int(100) NOT NULL,
-  `Cost` int(100) NOT NULL,
-  `Category` varchar(255) NOT NULL,
-  `Packing_date` date NOT NULL,
-  `Expire_date` date NOT NULL,
-  `Short_dec` varchar(255) NOT NULL,
-  `Long_dec` varchar(255) NOT NULL,
-  `Stock` int(255) NOT NULL,
-  `Action` tinyblob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `medicine`
---
-
-INSERT INTO `medicine` (`Image`, `Id`, `Name`, `Price`, `Cost`, `Category`, `Packing_date`, `Expire_date`, `Short_dec`, `Long_dec`, `Stock`, `Action`) VALUES
-('media/medicine/revital-h-woman-health.webp', 0, 'Revital H Woman', 78, 102, 'Health Care', '2021-10-09', '2022-06-18', 'Keeps women physically and mentally active to perform daily chores.', 'Revital H Woman is a specially formulated, complete and balanced supplement for women. Their body has distinct needs and it is important to remember that to stay active.', 9, ''),
-('media/medicine/horlicks.webp', 1, 'Horlicks Lite Malt 450', 250, 275, 'Health Care', '2022-01-01', '2023-06-14', 'Horlicks Lite is high in fibre.', 'The Horlicks Lite Regular Malt Nutrition Drink Jar of 450 G contains the goodness of malted barley and wheat with zero cholesterol, high protein and no added sugar.', 15, ''),
-('media/medicine/horlicks-mothers.webp', 2, 'Horlicks Mother\'S Plus', 175, 193, 'Health Care', '2021-12-06', '2023-10-19', 'Horlicks Mother’s Plus Vanilla Drink Refill', 'The mother\'s health and the baby’s growth are both dependent on proper nutrition throughout pregnancy.', 10, ''),
-('media/medicine/horlicks-protein-plus.webp', 3, 'Horlicks Protein Plus', 450, 484, 'Health Care', '2022-01-02', '2024-06-30', 'Delivers 34g of protein for every 100g of the product.', 'Horlicks Protein+ contains three sources of protein each acting at different speeds, along with a number of other helpful nutrients.', 25, ''),
-('media/medicine/zandu.webp', 4, 'Zandu Kesari Jivan', 290, 319, 'Health Care', '2021-10-15', '2022-11-26', 'Zandu Kesari Jivan contains Kesar, Moti, Amla and other herbs.', 'Zandu Kesari Jivan is a health supplement created with ayurvedic ingredients to boost your health and immunity.', 8, ''),
-('media/medicine/cadbury-bournvita.webp', 5, 'Cadbury Bournvita', 210, 249, 'Health Care', '2021-09-25', '2023-05-12', 'It contains essential vitamins, proteins and minerals.', 'Cadbury Bourvita is a malted drink mix that is extremely healthy and tasty at the same time. It contains a unique blend of Vitamin (D, B2, B9, B12), Iron and Calcium.', 50, ''),
-('media/medicine/sugar-free.webp', 6, 'Sugar Free Natura', 85, 109, 'Health Care', '2021-07-10', '2023-02-17', 'It is ideal for fitness seekers, weight-conscious & diabetic people.', 'Sugar Free Natura is made from sucralose and contains a low-calorie sugar substitute that can be used in cooking, baking and added to various beverages - tea, coffee, ice-tea, ice-coffee, etc.', 9, ''),
-('media/medicine/himalaya.webp', 8, 'Himalaya Geriforte Tablets', 96, 114, 'Health Care', '2021-11-19', '2023-07-14', 'The Himalaya tablet is known for its antioxidant properties.', 'Himalaya Geriforte tablets, known for their antioxidant properties, have been formulated to improve the immune system.', 2, ''),
-('media/medicine/liveasy-wellness-calcium-magnesium-vitamin-d3.webp', 9, 'Liveasy Wellness Calcium', 299, 329, 'Health Care', '2021-07-16', '2022-05-14', 'Helps to build strong bones and dental health', 'LivEasy Wellness Calcium D3 Capsules contain calcium, vitamin D3, magnesium and zinc which are crucial for strong bones, joints, muscles & teeth.', 50, ''),
-('media/medicine/carbamide-forte-calcium1.webp', 10, 'Liveasy Wellness Multivitamin', 485, 419, 'Health Care', '2021-10-08', '2022-04-16', 'Boosts immunity and energy levels', 'Vitamins and Minerals are essential nutrients that our bodies need for healthy functioning.', 30, ''),
-('media/medicine/buscogast-stomach-pain.webp', 11, 'Buscogast Stomach Pain', 19, 26, 'Medicine', '2021-11-26', '2023-09-21', 'Buscogast Stomach Pain Specialist relieves the stomach from a wide range of day-to-day troubles.', 'Stomach and gut troubles attack us when we least expect them. Buscogast Stomach Pain Specialist works by relieving stomach troubles.', 4, ''),
-('media/medicine/omved-multipurpose-pain-relief.webp', 12, 'Omved Multipurpose Pain Relief', 1059, 1290, 'Medicine', '2022-01-08', '2023-02-25', '100% Natural, external herbal therapy', 'A 100% natural, flexible, hot and cold pack that revives the Ayurvedic tradition of herbal healing, to give you instant relief from rheumatic pain, neural pain.', 51, ''),
-('media/medicine/saridon-headache-relief.webp', 13, 'Saridon Headache Relief', 25, 36, 'Medicine', '2021-12-31', '2022-10-06', 'Headache', 'Saridon tablets are usually used for headache relief. This tablet acts as a mild analgesic medicine that is primarily used as a pain reliever. ', 4, ''),
-('media/medicine/vicks-vaporub-110m.webp', 14, 'Vicks Vaporub 110ml', 199, 222, 'Medicine', '2021-12-18', '2023-04-15', 'Headache', 'Vicks VapoRub is a solution to easing symptoms of cough and cold, providing relief when you need it. ', 13, ''),
-('media/medicine/nu-bph-strip.webp', 15, 'Nu Bph Strip', 310, 329, 'Medicine', '2022-01-07', '2023-07-14', 'bp', 'Use incase of Blood Pressure.', 84, ''),
-('media/medicine/dr-reckeweg.webp', 17, 'Dr Reckeweg R 85', 184, 202, 'Medicine', '2021-09-25', '2022-08-19', 'bp', 'Use incase of Blood Pressure.', 7, ''),
-('media/medicine/digene-.webp', 18, 'Digene Acidity & Gas', 13, 16, 'Medicine', '2021-10-09', '2022-12-23', 'gas', 'Digene acidity and gas relief tablet provides quick relief from stomach ache and abdominal cramps as a result of acidity and gas formation.', 5, ''),
-('media/medicine/digene-gel-acidity-gas.webp', 19, 'Digene Gel Acidity', 95, 107, 'Medicine', '2021-11-13', '2022-11-04', 'gas', 'The eating habits and lifestyle people follow these days have made acidity and gas very common problems.', 24, ''),
-('media/medicine/allen_a33_fever_drops.jpg', 20, 'Allen A33 Fever Drops', 211, 245, 'Medicine', '2021-09-25', '2022-12-30', 'fever', 'Use incase of High fever.', 34, ''),
-('media/medicine/dolo_650mg_tablet_15_s_0.jpg', 21, 'Dolo 650mg Tablet 15\'S', 19, 24, 'Medicine', '2021-11-27', '2023-04-01', 'fever', 'DOLO 650MG contains Paracetamol which belongs to a group of medicines called analgesic and antipyretics', 42, '');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `orderlist`
 --
 
+DROP TABLE IF EXISTS `orderlist`;
 CREATE TABLE `orderlist` (
   `Id` int(255) NOT NULL,
   `Image` blob NOT NULL,
@@ -295,6 +313,7 @@ INSERT INTO `orderlist` (`Id`, `Image`, `Name`, `Price`, `Quantity`) VALUES
 -- Table structure for table `seller`
 --
 
+DROP TABLE IF EXISTS `seller`;
 CREATE TABLE `seller` (
   `Id` int(255) NOT NULL,
   `Profile_pic` blob NOT NULL,
@@ -323,6 +342,7 @@ INSERT INTO `seller` (`Id`, `Profile_pic`, `Name`, `DOB`, `Gender`, `Ph_no`, `Li
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(255) NOT NULL,
   `Profile_pic` varchar(500) NOT NULL,
@@ -370,6 +390,18 @@ ALTER TABLE `doctor`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indexes for table `e_category`
+--
+ALTER TABLE `e_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `e_medicine`
+--
+ALTER TABLE `e_medicine`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `e_subscription_user`
 --
 ALTER TABLE `e_subscription_user`
@@ -380,12 +412,6 @@ ALTER TABLE `e_subscription_user`
 --
 ALTER TABLE `e_users`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `medicine`
---
-ALTER TABLE `medicine`
-  ADD PRIMARY KEY (`Id`);
 
 --
 -- Indexes for table `orderlist`
@@ -410,6 +436,18 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `e_category`
+--
+ALTER TABLE `e_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `e_medicine`
+--
+ALTER TABLE `e_medicine`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
 -- AUTO_INCREMENT for table `e_subscription_user`
 --
 ALTER TABLE `e_subscription_user`
@@ -420,12 +458,6 @@ ALTER TABLE `e_subscription_user`
 --
 ALTER TABLE `e_users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
-
---
--- AUTO_INCREMENT for table `medicine`
---
-ALTER TABLE `medicine`
-  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
