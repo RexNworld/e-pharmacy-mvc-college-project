@@ -25,19 +25,22 @@
                         <tbody>
                             <?php foreach($data['medicineList'] as $item) :?>
                             <tr>
-                                <td><img src="<?=URLROOT?>/uploads/<?=$item->image?>" width="50px"></td>
+                                <?php $img = explode(',',$item->image);?>
+                                <td><img src="<?=URLROOT?>/uploads/<?=$img[0]?>" width="50px"></td>
                                 <td><?=$item->name?></td>
                                 <td><?=$item->short_dec?></td>
                                 <td><?=$item->categories?></td>
                                 <td><?=$item->s_price?></td>
                                 <td><?=$item->stock?></td>
                                 <td>
-                                    <a class="btn text-primary" href="editMedicine/<?=$item->name_slug?>">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a class="btn text-danger">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
+                                    <div class="d-flex">
+                                        <a class="btn text-primary" href="editMedicine/<?=$item->name_slug?>">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a class="btn text-danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                             <?php endforeach;?>

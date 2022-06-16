@@ -1,148 +1,140 @@
-<nav class="navbar navbar-expand-md navbar-dark main-menu" style="box-shadow: none; background-color: #063852">
-    <div class="container">
-        <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-            class="btn btn-link d-block d-md-none">
-            <i class="bi bi-list"></i>
-        </button>
-
-        <a href="<?=URLROOT?>" class="navbar-brand brand-style"><img
-                src="<?=URLROOT?>/public/assets/img/e_pharmacy_light.png" alt="e-Pharmacy" width="150" height="30"
-                srcset="" class="d-inline-block align-text-top logo-navbar" /></a>
-
-        <ul class="navbar-nav ml-auto d-block d-md-none">
-            <li class="nav-item">
-                <a class="btn text-white" href="#">
-                    <span class="position-relative btn-link me-2"><i class="bi bi-cart-fill"
-                            style="font-size: 20px"></i><span
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                            style="font-size: 10px">99+</span></span>
-                </a>
-            </li>
-        </ul>
-
-        <!-- Search Bar -->
-        <div class="collapse navbar-collapse">
-            <div class="form-inline my-2 my-lg-0 mx-auto" style="margin-left: 0 !important; width: 50%">
-                <div class="input-group">
-                    <span class="input-group-text bg-light" id="basic-addon3">Delivery to</span>
-                    <div class="vr"></div>
-                    <input class="form-control me-2" type="search" placeholder="Search for products..."
-                        aria-label="Search" />
+<div class="sticky-top">
+    <nav class="bg-dark d-none d-md-block">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div class="nav-color nav-font d-flex">
+                    <a href="#" class="text-reset text-decoration-none fst-italic p-2">Facebook</a>
+                    <a href="#" class="text-reset text-decoration-none fst-italic p-2">Twitter</a>
+                    <a href="#" class="text-reset text-decoration-none fst-italic p-2">Instagram</a>
+                    <a href="#" class="text-reset text-decoration-none fst-italic p-2">Youtube</a>
+                </div>
+                <div class="nav-color d-flex">
+                    <a href="" class="text-reset text-decoration-none fst-italic p-2">About Us</a>
+                    <a href="" class="text-reset text-decoration-none fst-italic p-2">Contact Us</a>
                 </div>
             </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+        <div class="container">
+            <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation"
+                class="btn navbar-toggler border-0 d-md-none">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
 
-            <!-- <form class="d-flex form-inline my-2 my-lg-0 mx-auto">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search for products..."
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-          </form> -->
+            <a href="<?=URLROOT?>" class="navbar-brand brand-style"><img
+                    src="<?=URLROOT?>/public/assets/img/e_pharmacy_dark.png" alt="e-Pharmacy" height="30" srcset=""
+                    class="d-inline-block align-text-top logo-navbar" /></a>
 
-            <ul class="navbar-nav">
+            <ul class="navbar-nav d-md-none">
                 <li class="nav-item">
-                    <a class="btn text-white" href="#">
-                        <span class="position-relative btn-link me-2 text-white" style="text-decoration: none"><i
-                                class="bi bi-bag-heart-fill" style="font-size: 20px"></i></span>
-                        Wishlist
+                    <a class="btn" href="#">
+                        <span class="btn-link"><i class="fa fa-search" style="font-size: 20px"></i> </span>
+                    </a>
+                    <a class="btn" href="#">
+                        <span class="position-relative"><i class="fa fa-heart" style="font-size: 20px"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
+                                style="font-size: 10px">9</span></span>
+                    </a>
+                    <a class="btn" href="cart-page.html">
+                        <span class="position-relative"><i class="fa fa-shopping-cart" style="font-size: 20px"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
+                                style="font-size: 10px">9</span></span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="btn text-white" href="#">
-                        <span class="position-relative btn-link me-2"><i class="bi bi-cart-fill text-white"
-                                style="font-size: 20px"></i><span
-                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                                style="font-size: 10px">99+</span></span>
-                        Cart
-                    </a>
-                </li>
-                <?php if(isAuth() !=0) :?>
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn text-white p-0 m-0 dropdown-toggle" type="button" id="profileDropdown"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="position-relative me-2 text-white">
-                                <?php if(!empty($_SESSION['user_img'])):?>
-                                <img src="<?= URLROOT.'/uploads/'.$_SESSION['user_img'] ?>" class="special-img">
-                                <?php else :?>
-                                <img src="<?=URLROOT?>/public/assets/img/profile_pic.jpg" class="special-img">
-                                <?php endif;?>
-                                <?php $name = explode(' ',$_SESSION['user_name']); 
-                                echo $name[0];
-                                ?>
-                                <b class="caret"></b>
-                            </span>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="profile">Profile</a>
-                            <?php if($_SESSION['user_type'] == 'SUPERADMIN') :?>
-                            <a class="dropdown-item" href="dashboard">Dashboard</a>
-                            <?php endif;?>
-                            <a class="dropdown-item" href="<?=URLROOT?>/logout">Logout</a>
-                        </div>
+            </ul>
+            <!-- Search Bar -->
+            <div class="collapse navbar-collapse">
+                <div class="ms-auto">
+                    <div class="input-group">
+                        <span class="input-group-text dropdown-toggle"><i class="fa fa-map-marker"
+                                aria-hidden="true">&nbsp;&nbsp;West Bengal</i>
+                        </span>
+                        <div class="vr"></div>
+                        <input class="form-control" type="search" placeholder="Search for products..."
+                            aria-label="Search" />
                     </div>
-                </li>
-                <?php else :?>
-                <li class="nav-item">
-                    <a class="btn text-white" href="login">
-                        <span class="position-relative btn-link me-2 text-white">
-                            <i class="bi bi-person-fill" style="font-size: 20px"></i></span>
-                        Sign in
-                    </a>
-                </li>
+                </div>
+                <div class="me-0 m-2 vr"></div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="btn" href="#">
+                            <span class="position-relative btn-link me-2" style="text-decoration: none"><i
+                                    class="fa fa-heart" style="font-size: 20px"></i><span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
+                                    style="font-size: 10px">9</span></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn" href="cart-page.html">
+                            <span class="position-relative btn-link me-2"><i class="fa fa-shopping-cart"
+                                    style="font-size: 20px"></i><span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
+                                    style="font-size: 10px">9</span></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn" href="login.html">
+                            <span class="btn-link me-2"><i class="fa fa-user" style="font-size: 20px"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="offcanvas offcanvas-start" style="width: 270px" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+                <!-- {% isAuth query if true%} -->
+                <!-- Hello name -->
+                <!-- {% else %} -->
+                <?php if(isAuth() != 0):?>
+                Welcome <?=$_SESSION['user_name']?>
+                <?php else:?>
+                Welcome Guest
                 <?php endif;?>
+
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <!-- {% isAuth query if true%} -->
+            <div class="border-bottom p-2 mx-4 d-flex justify-content-evenly">
+                <a href="" class="text-decoration-none">Login</a>/<a href=" " class="text-decoration-none">Sign up</a>
+            </div>
+            <!-- {% else %} -->
+            <ul class="navbar-nav p-4">
+                <p class="text-uppercase fw-bold text-muted text-light border-bottom m-0">Menu</p>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Man</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Women</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Accessories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Customise products</a>
+                </li>
             </ul>
-        </div>
-    </div>
-</nav>
-<!-- <div id="wrapper"> -->
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="container-fluid">
-        <div class="col-12 d-md-none">
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search for products..."
-                    aria-label="Search" />
-                <button class="btn btn-outline-success" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
-            </form>
-        </div>
-        <!-- Menu -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto me-auto mb-2 mb-lg-0 text-center">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Covid</a>
+            <ul class="navbar-nav bg-light p-4">
+                <p class="text-uppercase fw-bold text-muted text-light border-bottom m-0">Profile</p>
+                <li class="nav-item col">
+                    <a class="nav-link" aria-current="page" href="#">Profile</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Wellness</a>
+                <li class="nav-item col">
+                    <a class="nav-link" aria-current="page" href="#">Women</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Lab Test</a>
+                <li class="nav-item col">
+                    <a class="nav-link" aria-current="page" href="#">Accessories</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Ayurvedic</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Homeopathy</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Fitness</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Baby</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Beauty</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Treatments</a>
+                <li class="nav-item col">
+                    <a class="nav-link" aria-current="page" href="#">Customise products</a>
                 </li>
             </ul>
         </div>
     </div>
-</nav>
+    <div class="p-2"></div>

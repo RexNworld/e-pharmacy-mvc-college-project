@@ -17,9 +17,9 @@
                         <b class="caret"></b>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="profile">Profile</a>
+                        <a class="dropdown-item" href="<?=URLROOT?>/profile">Profile</a>
                         <?php if($_SESSION['user_type'] == 'SUPERADMIN') :?>
-                        <a class="dropdown-item" href="dashboard">Dashboard</a>
+                        <a class="dropdown-item" href="<?=URLROOT?>/dashboard">Dashboard</a>
                         <?php endif;?>
                         <a class="dropdown-item" href="<?=URLROOT?>/logout">Logout</a>
                     </div>

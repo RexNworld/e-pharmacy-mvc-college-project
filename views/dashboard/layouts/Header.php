@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css">
     <script src="<?= URLROOT?>/public/assets/vendors/jquery.min.js"></script>
     <script src="<?= URLROOT?>/public/assets/swiper/swiper-bundle.min.js"></script>
+
 </head>
 <body id="page-top">
     <div id="wrapper">

@@ -424,6 +424,121 @@ class Dashboard extends Controller{
         $this->view('addMedicine',$data);
     }
 
+    public function editMedicine(){
+         $url = $this->getUrl();
+         $c = count($url);
+         if($c !== 5)
+            $this->errorPage();
+            
+        
+        $data=[
+            'title' => 'Edit Medicine',
+            'medicineDetails'=> $this->medcineModel->getMedicineByTag($url[$c-1]),
+            'categoryList' => $this->medcineModel->getCategories(),
+
+            'm_name'=>'',
+            'name_slug'=>'',
+            'm_short_dec'=>'',
+            'm_price'=>'',
+            'm_m_price'=>'',
+            'm_p_date'=>'',
+            'm_e_date'=>'',
+            'm_stock'=>'',
+            'm_description'=>'',
+            'm_image'=>'',
+            'm_categories' => '',
+            
+            'm_nameError'=>'',
+            'm_short_decError'=>'',
+            'm_imageError'=>'',
+            'm_priceError'=>'',
+            'm_m_priceError'=>'',
+            'm_p_dateError'=>'',
+            'm_e_dateError'=>'',
+            'm_stockError'=>'',
+            'm_descriptionError'=>'',
+            'm_categoriesError'=>'',
+        ];
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data['m_name'] = trim($_POST['m_name']);
+            $data['name_slug'] = str_replace(' ', '-',strtolower(trim($_POST['m_name'])));
+            $data['m_short_dec'] = trim($_POST['m_short_dec']);
+            $data['m_price'] = trim($_POST['m_price']);
+            $data['m_m_price'] = trim($_POST['m_m_price']);
+            $data['m_p_date'] = trim($_POST['m_p_date']);
+            $data['m_e_date'] = trim($_POST['m_e_date']);
+            $data['m_stock'] = trim($_POST['m_stock']);
+            $data['m_description'] = trim($_POST['m_description']);
+            if(isset($_POST['m_categories'])){
+                foreach ($_POST['m_categories'] as $x)
+                    $tagArray[] =  $x;
+                $data['m_categories'] = implode(',',$tagArray);
+            }
+            if(empty($data['m_categories'])){
+                $data['m_categoriesError'] = "Please Select at least One Category";
+            }
+            if(empty($data['m_name']))
+                $data['m_nameError'] = "Please Enter The Name of the product";
+
+            // if (count(array_filter($_FILES['upload_file']['name'])) < 3) 
+            if (empty(array_filter($_FILES['upload_file']['name']))) 
+                $data['m_imageError'] = 'Please Select at least 3 Image of the product';
+
+            if(empty($data['m_short_dec']) && strlen($data['m_short_dec']) < 3)
+                $data['m_short_decError'] = "Please provide a small description about the product";
+            
+            if(empty($data['m_price']))
+                $data['m_priceError'] = "Please enter Maximum retail price";
+            if(empty($data['m_m_price']))
+                $data['m_m_priceError'] = "Please enter Maximum retail price";
+
+            if(empty($data['m_p_date']))
+                $data['m_p_dateError'] = "Please provide Pakeging date of the Product";
+            if(empty($data['m_e_date']))
+                $data['m_e_dateError'] = "Please provide Expiry date of the Product";
+
+            if(empty($data['m_stock']))
+                $data['m_stockError'] = "Please enter total stock of the product";
+            
+            if(empty($data['m_description']))
+                $data['m_descriptionError'] = "Please enter more details about the product";
+            
+            var_dump($_POST);
+            die();
+                if(empty($data['m_nameError']) && empty($data['m_imageError']) && empty($data['m_short_decError']) && empty($data['m_priceError']) && empty($data['m_m_priceError']) && empty($data['m_p_dateError']) && empty($data['m_e_dateError'])&& empty($data['m_stockError'])&& empty($data['m_descriptionError']) ){
+                if($_FILES['upload_file']['name']){
+                    if(!empty(array_filter($_FILES['upload_file']['name']))){
+                        $uploadResult = $this->uploader->uploadAll($_FILES['upload_file'],date("Y").'/'.date('m'),'medicine_images');
+                        foreach ($uploadResult as $x){
+                            $imageArray[] = 'medicine_images'.'/'.date("Y").'/'.date('m').'/'.$x[0];
+                            if($x[1] !== 1){
+                                $uploadResult[0]  = $x[0];
+                                $uploadResult[1] = 0;
+                            }
+                        }
+                        $data['m_image'] = implode(',',$imageArray);
+                    }
+                }else{
+                    $data['m_image'] = 'category_images/default.jpg';
+                    $uploadResult[0] = '';
+                    $uploadResult[1] = 1;
+                }
+                if($uploadResult[1] !==  0){
+                    if($this->medcineModel->addMedicine($data)){
+                        header('Location: '.$_SERVER['REQUEST_URI']);
+                    }else{
+                        echo '<script>alert("Something Went wrong. Please Re open your browser")</script>';
+                    }
+                }else{
+                    $data['m_imageError'] = $uploadResult[0];
+                }
+            }
+        }
+        $this->view('editMedicine',$data);
+    }
     public function appointment(){
         $this->view('appointment');
     }
@@ -437,7 +552,9 @@ class Dashboard extends Controller{
     }
     
     public function errorPage(){
-        $this->view('404');
+    $data['title'] = 'Page Not Found';
+        $this->view('404',$data);
+        die();
     }
 
     public function deleteUser(){
@@ -452,6 +569,18 @@ class Dashboard extends Controller{
             }
         }else{
             header('Location:'. URLROOT.'/dashboard/users/404');
+        }
+      }
+
+      public function getUrl(){
+        if(isset($_GET['url'])){
+            $url = rtrim($_SERVER['REQUEST_URI'],'/');
+            $url = filter_var($url, FILTER_SANITIZE_URL);
+            $url = explode('/',$url);
+            return $url;
+        }
+        else{
+            return [];
         }
       }
 }

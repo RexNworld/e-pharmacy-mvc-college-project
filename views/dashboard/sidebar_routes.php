@@ -14,11 +14,11 @@ class sidebar_routes{
         
         return array(
             ['','fas fa-tachometer-alt','Dashboard'],
-            ['users','fas fa-user','Users'],
-            ['doctors','fas fa-user-md','Doctors'],
-            ['orders','fas fa-cart-arrow-down','Orders'],
             ['medicine','fas fa-clinic-medical','Medicine'],
-            ['appointment','far fa-calendar-check','Appointment'],
+            ['users','fas fa-user','Users'],
+            ['orders','fas fa-cart-arrow-down','Orders'],
+            // ['doctors','fas fa-user-md','Doctors'],
+            // ['appointment','far fa-calendar-check','Appointment'],
             ['feedback','fas fa-comments','Feedback'],
             ['profile','fas fa-user-alt','Profile'],
         );

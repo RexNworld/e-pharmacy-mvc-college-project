@@ -1,0 +1,403 @@
+@keyframes scaleRotateImg {
+  0% {
+    transform: scale(1);
+    margin: 0;
+  }
+  35% {
+    transform: scale(1.2) rotate(1turn);
+    margin-right: 3px;
+  }
+  65% {
+    transform: scale(1.2) rotate(1turn);
+    margin-right: 3px;
+  }
+  to {
+    transform: scale(1);
+    margin: 0;
+  }
+}
+@keyframes scaleImg {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.1);
+    left: -3px;
+  }
+  65% {
+    transform: scale(1.1);
+    left: -3px;
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes slide_one {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-12px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slide_two {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-6px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes truckMoveAnim {
+  0% {
+    left: 15px;
+  }
+  79% {
+    opacity: 1;
+  }
+  85% {
+    left: 105%;
+    opacity: 0;
+  }
+  89% {
+    left: -50px;
+    opacity: 0;
+  }
+  to {
+    left: 15px;
+    opacity: 1;
+  }
+}
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    transform: scale(0);
+  }
+  80% {
+    display: block;
+    transform: scale(0);
+  }
+  to {
+    display: block;
+  }
+}
+@keyframes NavTransition {
+  0% {
+    opacity: 0.85;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes blackDrop {
+  0% {
+    background-color: transparent;
+  }
+  10% {
+    background-color: rgba(10, 0, 0, 0.05);
+  }
+  20% {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  30% {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+  40% {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+  60% {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  70% {
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+  80% {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  90% {
+    background-color: rgba(0, 0, 0, 0.45);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  to {
+    stroke-dashoffset: 900;
+  }
+}
+@keyframes textShake {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  70% {
+    transform: translateX(0);
+  }
+  90% {
+    transform: translateX(5px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slidePopupFromBottom {
+  0% {
+    transform: translate(-50%, 100%);
+  }
+  to {
+    transform: translate(auto, auto);
+  }
+}
+@media only screen and (max-width: 768px) {
+  @keyframes slidePopupFromBottom {
+    0% {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(auto);
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .loginWrapper .login-signup-body {
+    margin-top: 55px;
+    height: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .loginWrapper .login-signup-body .login-welcom-text {
+    margin: 0;
+  }
+  .loginWrapper .login-signup-body .login-welcom-text h1 {
+    font-size: 20px;
+  }
+  .loginWrapper .login-signup-body .login-welcom-text h2 {
+    font-size: 14px;
+  }
+  .loginWrapper .login-signup-body .slideFromBottomLogin {
+    animation: slideupLogin 0.3s linear;
+  }
+  @keyframes slideupLogin {
+    0% {
+      bottom: -50%;
+    }
+    to {
+      bottom: 0;
+    }
+  }
+}
+@keyframes animate_wishlist {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes shimmerAnimation {
+  0% {
+    background-position: -468px 0;
+  }
+  to {
+    background-position: 468px 0;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes swiper-preloader-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes shake {
+  12.5%,
+  37.5%,
+  62.5%,
+  87.5% {
+    transform: translate(-7px);
+  }
+  25%,
+  50%,
+  75%,
+  to {
+    transform: translate(7px);
+  }
+}
+@keyframes busy {
+  0% {
+    background: transparent;
+  }
+  50% {
+    background: #fff;
+  }
+  to {
+    background: transparent;
+  }
+}
+@keyframes moveUpDown {
+  0% {
+    transform: translate(0);
+  }
+  25% {
+    transform: translateY(-50px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  75% {
+    transform: translateY(-30px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes opacity-anim {
+  5% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  to {
+    background-position: 468px 0;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    width: 85px;
+  }
+  50% {
+    width: 40px;
+  }
+  to {
+    width: 0;
+  }
+}
+@keyframes sk-bounce {
+  0%,
+  to {
+    transform: scale(0.2);
+    -webkit-transform: scale(0.2);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes stretch {
+  0% {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    transform: scale(0);
+  }
+  80% {
+    display: block;
+    transform: scale(0);
+  }
+  to {
+    display: block;
+  }
+}

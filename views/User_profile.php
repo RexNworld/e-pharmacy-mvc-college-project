@@ -95,7 +95,7 @@
                         <div class="picture">
                             <img src="https://stahnu.cz/data/stahnu.cz/appimages/54/54737.jpg" class="picture-src"
                                 id="wizardPicturePreview" title="">
-                            <input type="file" id="wizard-picture" class="">
+                            <input type="file" id="wizard-picture" class="" />
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-sm-12 py-4">

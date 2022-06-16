@@ -10,7 +10,8 @@
 </div>
 <div id="snackbar"></div>
 </body>
-<script src="<?= URLROOT?>/public/assets/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script src="<?= URLROOT?>/public/assets/bootstrap/js/bootstrap.min.js"></script> -->
+<script src="<?= URLROOT?>/public/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- <script src="/public/assets/js/Chart.bundle.min.js"></script> -->
 <!-- <script src="/public/assets/js/bs-init.js"></script> -->
 <script src="<?= URLROOT?>/public/assets/js/theme.js"></script>

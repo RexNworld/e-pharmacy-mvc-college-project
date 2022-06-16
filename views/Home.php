@@ -1,8 +1,5 @@
-<?
-$url[0] = 'Something';
-?>
 <section style="padding-top: 0">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-9">
                 <div id="carouselExampleIndicators" class="carousel slide shadow-sm bg-body rounded"
@@ -83,110 +80,55 @@ $url[0] = 'Something';
     </div>
 </section>
 <section style="margin: 0">
-    <div class="container">
+    <div class="container-fluid">
         <h3>Shop by health conditions</h3>
         <hr />
-        <div class="carousel-wrapper">
-            <div class="owl-carousel owl-theme" id="owl-category">
-                <div class="item">
-                    <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise"
-                        style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-coronavirus-50.png" alt="" class="src" />
-                        <span>Covid Care</span>
+        <div class="swiper categorySwiper">
+            <div class="swiper-wrapper">
+                <?php foreach($data['categoryList'] as $tag):?>
+                <div class="swiper-slide">
+                    <a href="<?=URLROOT.'/category/'. $tag->c_tag?>"
+                        class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise" style="width: 100%">
+                        <img src="<?= URLROOT?>/uploads/<?=$tag->c_img?>" alt="" class="src" />
+                        <span><?=$tag->c_name?></span>
                     </a>
                 </div>
-                <div class="item">
-                    <a href="#" class="btn btn-sm shadow-sm bg-body m-2 text-start btn-rise" style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-diabetes-50.png" alt="" class="src" />
-                        <span>Diabeties Care</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise"
-                        style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-brain_-50.png" alt="" class="src" />
-                        <span>Mind Care</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise"
-                        style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-liver-50.png" alt="" class="src" />
-                        <span>Liver Care</span>
-                    </a>
-                </div>
-                <dv class="item"><a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise"
-                        style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-medical-heart-50.png" alt=""
-                            class="src" />
-                        <span>Cardiac</span>
-                    </a></dv>
-                <div class="item">
-                    <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise"
-                        style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-pain-relife-50.png" alt="" class="src" />
-                        <span>Pain Relife</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise"
-                        style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-dental-crown-50.png" alt=""
-                            class="src" />
-                        <span>Oral Care</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise"
-                        style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-lungs-50.png" alt="" class="src" />
-                        <span>Respiratory</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise"
-                        style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-cold_and_immunity_50.png" alt=""
-                            class="src" />
-                        <span>Cold & Immunity</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise"
-                        style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-stomach-50.png" alt="" class="src" />
-                        <span>Stomach care</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise"
-                        style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-contraception-50.png" alt=""
-                            class="src" />
-                        <span>Sexual Health</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise"
-                        style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-ic_eyeear-50.png" alt="" class="src" />
-                        <span>Eye & Ear care</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 text-start btn-rise"
-                        style="min-width: 200px">
-                        <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" class="src" />
-                        <span>Elderly Care</span>
-                    </a>
-                </div>
+                <?php endforeach;?>
+
             </div>
         </div>
     </div>
 </section>
+<script>
+var categorySwiper = new Swiper('.categorySwiper', {
+    loop: true,
 
+    breakpoints: {
+        200: {
+            slidesPerView: 2,
+            spaceBetween: 5,
+        },
+        500: {
+            slidesPerView: 3,
+            spaceBetween: 10,
+        },
+        640: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+        },
+        768: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+        },
+        1024: {
+            slidesPerView: 7,
+            spaceBetween: 30,
+        },
+    },
+});
+</script>
 <section>
-    <div class="container">
+    <div class="container-fluid">
         <h3>Shop by health conditions</h3>
         <hr />
 

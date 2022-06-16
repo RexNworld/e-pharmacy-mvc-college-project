@@ -2,6 +2,8 @@
 class Pages extends Controller{
     public function __construct(){
         $this->userModel = $this->model('User');
+        $this->medcineModel = $this->model('Medicine');
+        
     }
 
     public function index(){
@@ -9,6 +11,7 @@ class Pages extends Controller{
           'title' => 'Home Page',  
           'author' => 'Reshav Sahani',  
           'date' => '23/05/2022',
+          'categoryList' => $this->medcineModel->getCategories(),
         ];
         $this->view('Home',$data);        
     }
@@ -19,16 +22,6 @@ class Pages extends Controller{
 
     public function product_details(){
       $this->view('Product_details');        
-  }
-
-    public function category(){
-      $data = [
-        'title' => 'Category',
-        'termname'=> 'Medicine One',
-        'count'=> '250',
-
-      ];
-      $this->view('Category',$data);        
   }
 
   public function profile(){
@@ -63,6 +56,7 @@ class Pages extends Controller{
               $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
               $data = [
+                'title' => 'Sign up',
                 'name' => trim($_POST['name']),
                 'email' => trim($_POST['email']),
                 'mobile' => trim($_POST['mobile']),
@@ -137,7 +131,7 @@ class Pages extends Controller{
                         header('Location: ' .URLROOT.'/login');
                       }
                     }else{
-                        die("Something went wrong!");
+                        die("<script>alert('Something went wrong!')</script>");
                     }
                 }
           }
@@ -158,13 +152,8 @@ class Pages extends Controller{
           if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             
-            $data = [
-              'title' => 'Sign in',
-              'username' => trim($_POST['username']),
-              'password' => trim($_POST['password']),
-              'nameError' => '',
-              'passError' => '',
-            ];
+            $data['username'] = trim($_POST['username']);
+            $data['password'] = trim($_POST['password']);
 
             if(empty($data['username'])){
               $data['nameError'] = 'Please enter your Email or Mobile';
@@ -173,7 +162,7 @@ class Pages extends Controller{
             if(empty($data['password'])){
               $data['passError'] = 'Please enter your Password';
             }
-            
+
             if(empty($data['nameError']) && empty($data['passError'])){
               $loggedInUser = $this->userModel->login($data['username'], $data['password']);
               if($loggedInUser){
@@ -183,14 +172,8 @@ class Pages extends Controller{
               }
             }
 
-          }else{
-            $data = [
-              'username' => '',
-              'password' => '',
-              'nameError' => '',
-              'passError' => '',
-            ];
           }
+          
           if(isAuth() != 0){
             header('Location:'. URLROOT . '/dashboard');
           }else
@@ -230,5 +213,16 @@ class Pages extends Controller{
         $this->view('User', $data);
     }
     
+    public function getUrl(){
+      if(isset($_GET['url'])){
+          $url = rtrim($_SERVER['REQUEST_URI'],'/');
+          $url = filter_var($url, FILTER_SANITIZE_URL);
+          $url = explode('/',$url);
+          return $url;
+      }
+      else{
+          return [];
+      }
+    }
 
 }?>

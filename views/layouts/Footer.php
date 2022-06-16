@@ -39,11 +39,14 @@
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                     <!-- Content -->
                     <h6 class="text-uppercase fw-bold mb-4">
-                        <i class="fas fa-gem me-3"></i><?=SITENAME?>
+                        <a href="<?=URLROOT?>" class="navbar-brand brand-style"><img
+                                src="<?=URLROOT?>/public/assets/img/e_pharmacy_light.png" alt="e-Pharmacy" height="30"
+                                srcset="" class="d-inline-block align-text-top logo-navbar" /></a>
                     </h6>
                     <p>
-                        Here you can use rows and columns to organize your footer content. Lorem ipsum
-                        dolor sit amet, consectetur adipisicing elit.
+                        Professional Bringing The Customer Comfortability. Our Aim Is To Provide The All The Medical
+                        Services To The Customer At
+                        Their Doorstep Also Maintaining The Price Ratio.
                     </p>
                 </div>
                 <!-- Grid column -->
