@@ -37,7 +37,8 @@
                                         <a class="btn text-primary" href="editMedicine/<?=$item->name_slug?>">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a class="btn text-danger">
+                                        <a class="btn text-danger"
+                                            href="<?=URLROOT?>/dashboard/deleteMedicine/<?=$item->name_slug?>">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </div>

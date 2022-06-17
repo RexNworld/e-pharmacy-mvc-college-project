@@ -426,13 +426,27 @@ class Dashboard extends Controller{
         $this->view('addMedicine',$data);
     }
 
+    public function deleteMedicine(){
+        if(isset($_GET['url'])){
+            $url = rtrim($_GET['url'],'/');
+            $url = filter_var($url, FILTER_SANITIZE_URL);
+            $url = explode('/',$url); 
+            if($this->medcineModel->deleteMedicine($url[2])){
+                header('Location:'. URLROOT.'/dashboard/medicine');
+            }else{
+                header('Location:'. URLROOT.'/dashboard/medicine/404');
+            }
+        }else{
+            header('Location:'. URLROOT.'/dashboard/medicine/404');
+        }
+    }
+      
     public function editMedicine(){
          $url = $this->getUrl();
          $c = count($url);
          if($c !== 5)
             $this->errorPage();
-            
-        
+
         $data=[
             'title' => 'Edit Medicine',
             'medicineDetails'=> $this->medcineModel->getMedicineByTag($url[$c-1]),
@@ -508,8 +522,8 @@ class Dashboard extends Controller{
             if(empty($data['m_description']))
                 $data['m_descriptionError'] = "Please enter more details about the product";
             
-            var_dump($_POST);
-            die();
+            // var_dump($_POST);
+            // die();
                 if(empty($data['m_nameError']) && empty($data['m_imageError']) && empty($data['m_short_decError']) && empty($data['m_priceError']) && empty($data['m_m_priceError']) && empty($data['m_p_dateError']) && empty($data['m_e_dateError'])&& empty($data['m_stockError'])&& empty($data['m_descriptionError']) ){
                 if($_FILES['upload_file']['name']){
                     if(!empty(array_filter($_FILES['upload_file']['name']))){
@@ -529,7 +543,20 @@ class Dashboard extends Controller{
                     $uploadResult[1] = 1;
                 }
                 if($uploadResult[1] !==  0){
-                    if($this->medcineModel->addMedicine($data)){
+                    $data = [
+                        'm_name'=>$data['m_name'],
+                        'name_slug'=>$data['name_slug'],
+                        'm_short_dec'=>$data['m_short_dec'],
+                        'm_price'=>$data['m_price'],
+                        'm_m_price'=>$data['m_m_price'],
+                        'm_p_date'=>$data['m_p_date'],
+                        'm_e_date'=>$data['m_e_date'],
+                        'm_stock'=>$data['m_stock'],
+                        'm_description'=>$data['m_description'],
+                        'm_image'=>$data['m_image'],
+                        'm_categories' => $data['m_categories'],
+                    ];
+                    if($this->medcineModel->editMedicine($data)){
                         header('Location: '.$_SERVER['REQUEST_URI']);
                     }else{
                         echo '<script>alert("Something Went wrong. Please Re open your browser")</script>';

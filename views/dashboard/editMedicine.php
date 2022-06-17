@@ -95,17 +95,19 @@
                                             data-bs-toggle="dropdown" aria-expanded="false">Select Category</button>
                                         <div class="dropdown-menu w-50" aria-labelledby="optionsDown">
                                             <div class="dropdown-item customHove">
-                                                <?php foreach($data['categoryList'] as $tags) :?>
+                                                <?php
+                                            // $tax = explode(',',$data['medicineDetails'][0]->categories);
+                                            for($i=0,$c=0;$i<count($data['categoryList']);$i++){?>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox"
-                                                        value="<?=$tags->c_name?>" id="flexCheckDefault"
-                                                        name="m_categories[]"
-                                                        <?= $tags->c_name == $data['medicineDetails'][0]->categories ? 'checked' : '';?>>
+                                                        value="<?=$data['categoryList'][$i]->c_name?>"
+                                                        id="flexCheckDefault" name="m_categories[]">
                                                     <label class="form-check-label" for="flexCheckDefault">
-                                                        <?=$tags->c_name?>
+                                                        <?=$data['categoryList'][$i]->c_name?>
                                                     </label>
                                                 </div>
-                                                <?php endforeach; ?>
+                                                <?php 
+                                            }?>
                                             </div>
                                         </div>
                                     </div>

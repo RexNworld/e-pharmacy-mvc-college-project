@@ -72,6 +72,7 @@ class Medicine{
         else
             return false;
     }
+    
     public function addMedicine($data){
         $this->db->query("INSERT INTO `e_medicine` (name,name_slug,image,s_price,m_price,categories,packaging_date,expiry_date,short_dec,long_dec,stock,date) VALUES(:name,:name_slug,:image,:s_price,:m_price,:categories,:packaging_date,:expiry_date,:short_dec,:long_dec,:stock,:date)");
 
@@ -87,6 +88,39 @@ class Medicine{
         $this->db->bind(':long_dec', $data['m_description']);
         $this->db->bind(':stock', $data['m_stock']);
         $this->db->bind(':date', date('Y-m-d h:i:s', time()));
+        
+        if($this->db->execute())
+            return true;
+        else
+            return false;
+    }
+
+    public function deleteMedicine($slug){
+        $this->db->query("DELETE FROM `e_medicine` WHERE name_slug = :name_slug");
+        $this->db->bind(':name_slug', $slug);
+
+        if($this->db->execute())
+            return true;
+        else
+            return false;
+    }
+
+    public function editMedicine($data){
+        $sql = "UPDATE `e_medicine` SET name = :name,name_slug = :name_slug,image = :image,s_price = :s_price,m_price = :m_price,categories = :categories,packaging_date = :packaging_date,expiry_date = :expiry_date,short_dec = :short_dec,long_dec = :long_dec,stock = :stock WHERE name_slug = :name_slug";
+        
+        $this->db->query($sql);
+
+        $this->db->bind(':name', $data['m_name']);
+        $this->db->bind(':name_slug', $data['name_slug']);
+        $this->db->bind(':image', $data['m_image']);
+        $this->db->bind(':s_price', $data['m_price']);
+        $this->db->bind(':m_price', $data['m_m_price']);
+        $this->db->bind(':categories', $data['m_categories']);
+        $this->db->bind(':packaging_date', $data['m_p_date']);
+        $this->db->bind(':expiry_date', $data['m_e_date']);
+        $this->db->bind(':short_dec', $data['m_short_dec']);
+        $this->db->bind(':long_dec', $data['m_description']);
+        $this->db->bind(':stock', $data['m_stock']);
         
         if($this->db->execute())
             return true;
