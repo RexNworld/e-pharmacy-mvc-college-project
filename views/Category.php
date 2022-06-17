@@ -77,6 +77,9 @@
         <div class="col-sm-12 col-md-9 offset-md-3">
 
             <div class="container p-0">
+                <?php if(count($data['medcineList']) == 0): ?>
+                <h2>No Result Found</h2>
+                <?php endif;?>
                 <div class="row" id="produc-listng">
 
                     <?php foreach($data['medcineList'] as $medicine):?>
@@ -88,16 +91,14 @@
                         <div class="productCardBox">
                             <div class="productCardImg false">
                                 <a href="<?=URLROOT.'/medicine/'.$medicine->name_slug?>">
-                                    <div class="productImg"
-                                        style="width: 100%;height: 70%; position: relative; background: rgb(248, 249, 249)">
-                                        <img src="<?=URLROOT?>/uploads/<?=$image[0]?>" alt="" width="100%"
-                                            height="100%" />
+                                    <div class="productImg" style="width: 100%;height: 70%; position: relative;">
+                                        <img src="<?=URLROOT?>/uploads/<?=$image[0]?>" alt="" width="100%" height="100%"
+                                            style="object-fit: contain;" />
                                     </div>
                                 </a>
                                 <div class="productCardDetail">
                                     <div class="d-flex">
-                                        <a href="<?=URLROOT.'/medicine/'.$medicine->name_slug?>">
-
+                                        <a href="<?=URLROOT.'/medicine/'.$medicine->short_dec?>">
                                             <div class="productNaming bkf-ellipsis">
                                                 <h3 class="brand-name"><?= $medicine->name?></h3>
                                                 <div class="clr-shade4 h3-p-name">
@@ -116,7 +117,9 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between loyalty-stock-wrap">
                                     </div>
-                                    <button class="btn btn-theme "><b>Add to cart</b></button>
+                                    <a class="btn btn-theme " type="button"
+                                        onclick="setCookie('<?=$medicine->name_slug?>','medicine',20)"><b>Add to
+                                            cart</b></a>
                                 </div>
                             </div>
                         </div>

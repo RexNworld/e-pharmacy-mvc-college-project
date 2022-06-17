@@ -8,34 +8,31 @@ class Medicine extends Controller{
     }
      
     public function index(){
-        
-        $c = count($url);
-        if($c !== 3)
-           $this->errorPage();
-    
-        if(isset($url[3]))
-            $this->view('Medicine',$data);  
+        $this->missingPage();
     }
 
     public function errorPage(){
         $c = count($this->url);
         $url = $this->url;
         $allMed = $this->medcineModel->getMedicineByTag($url[$c-1]);
-        $categoryP = $this->getMedicineByTag($allMed[0]->categories);
         if($c !== 4)
-           $this->missingPage();
-           
-        $data = [
-        'title' => $allMed[0]->name,
-        'termname'=> 'Medicine One',
-        'count'=> '250',
-        'categoryList' => $this->medcineModel->getCategories(),
-        'medicine' => $allMed[0],
-        'related' => $categoryP,
-        'url' => $url[$c-1],
-        ];
-           
-        $this->view('Medicine',$data);
+        $this->missingPage();
+        if(!empty($allMed)){   
+            $categoryP = $this->getMedicineByTag($allMed[0]->categories);
+            $data = [
+            'title' => $allMed[0]->name,
+            'termname'=> 'Medicine One',
+            'count'=> '250',
+            'categoryList' => $this->medcineModel->getCategories(),
+            'medicine' => $allMed[0],
+            'related' => $categoryP,
+            'url' => $url[$c-1],
+            ];
+            
+            $this->view('Medicine',$data);
+        }
+        else
+        $this->missingPage();
     }
 
     public function missingPage(){

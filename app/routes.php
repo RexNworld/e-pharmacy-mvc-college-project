@@ -11,7 +11,6 @@ class Routes{
             // $url = explode('/',$url);
             // print_r($url);
             // return $url;
-            
         }
         switch ($url){
             case '/':
@@ -26,8 +25,14 @@ class Routes{
                 return 'index';
             case 'category':
                 return 'index';
+            case 'contact':
+                return 'contact';
             case 'cart':
                 return 'cart';
+            case 'emptyCart':
+                return 'cart';
+            case 'search':
+                return 'search';
             case 'profile':
                 return 'profile';
             case 'register':

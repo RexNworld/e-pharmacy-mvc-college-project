@@ -34,8 +34,14 @@ class Pages extends Controller{
     }
   
     public function about(){
-        $this->view('About');        
+      $data = ['title' => 'About Us'];
+      $this->view('About',$data );        
     }
+
+    public function contact(){
+      $data = ['title' => 'Contact Us'];
+      $this->view('contactus',$data );        
+  }
 
     public function product_details(){
       $this->view('Product_details');        
@@ -51,7 +57,64 @@ class Pages extends Controller{
 
     public function cart(){
         $data = ['title' => 'My Cart'];
-        $this->view('Cart', $data);
+        if(countCart() !=0){
+         $data['cartData'] = $this->getMedicineByForCart();
+         $data['priceSummary'] = $this->getCalculatedPrice($data['cartData']);
+         
+          $this->view('Cart', $data);
+        }else
+          $this->view('emptyCart', $data);
+
+    }
+    
+    public function getMedicineByForCart(){
+      $medicine = $this->medcineModel->getMedicine();
+      $resultMed = [];
+      foreach($medicine as $med){
+          foreach ($_COOKIE as $key=>$val){
+            if($val == 'medicine'){
+              if($med->name_slug === $key){
+                $resultMed[] = $med;
+              }
+            }
+          }
+      }
+      return $resultMed;
+    }
+
+    public function getCalculatedPrice($data){
+      $result = [
+        'mrp' => 0,
+        'sel' => 0,
+        'dis' => 0,
+        'disPer' => 0,
+      ];
+      
+      foreach($data as $item){
+        $result['mrp'] += $item->s_price;
+        $result['sel'] += $item->m_price;
+      }
+      $result['dis'] = $result['mrp'] - $result['sel'];
+      $result['disPer'] = intval((($result['mrp'] -  $result['sel'])*100) / $result['mrp']);
+
+      return $result;
+    }
+
+    public function search(){
+      $data = ['title' => 'Search'];
+      if(isset($_GET['s'])){
+        $search = $this->medcineModel->getSearchData($_GET['s']);
+        $data = [
+          'title' => 'Search Result for '.$_GET['s'],
+          'termname'=> 'Medicine One',
+          'count'=> '250',
+          'categoryList' => $this->medcineModel->getCategories(),
+          'medcineList' => $search,
+          'url' => '',
+          ];
+          $this->view('Category',$data);
+      }else
+        $this->view('404',$data);
     }
 
     public function register(){

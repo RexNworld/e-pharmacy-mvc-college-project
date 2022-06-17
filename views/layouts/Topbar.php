@@ -9,8 +9,8 @@
                     <a href="#" class="text-reset text-decoration-none fst-italic p-2">Youtube</a>
                 </div>
                 <div class="nav-color d-flex">
-                    <a href="" class="text-reset text-decoration-none fst-italic p-2">About Us</a>
-                    <a href="" class="text-reset text-decoration-none fst-italic p-2">Contact Us</a>
+                    <a href="<?=URLROOT?>/about" class="text-reset text-decoration-none fst-italic p-2">About Us</a>
+                    <a href="<?=URLROOT?>/contact" class="text-reset text-decoration-none fst-italic p-2">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -29,18 +29,13 @@
 
             <ul class="navbar-nav d-md-none">
                 <li class="nav-item">
-                    <a class="btn" href="#">
+                    <!-- <a class="btn" href="#">
                         <span class="btn-link"><i class="fa fa-search" style="font-size: 20px"></i> </span>
-                    </a>
-                    <a class="btn" href="#">
-                        <span class="position-relative"><i class="fa fa-heart" style="font-size: 20px"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
-                                style="font-size: 10px">9</span></span>
-                    </a>
-                    <a class="btn" href="cart-page.html">
+                    </a> -->
+                    <a class="btn" href="<?=URLROOT?>/cart">
                         <span class="position-relative"><i class="fa fa-shopping-cart" style="font-size: 20px"></i>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
-                                style="font-size: 10px">9</span></span>
+                                style="font-size: 10px" id="cartCount"><?=countCart()?></span></span>
                     </a>
                 </li>
             </ul>
@@ -48,35 +43,20 @@
             <div class="collapse navbar-collapse">
                 <div class="ms-auto">
                     <div class="input-group">
-                        <span class="input-group-text dropdown-toggle"><i class="fa fa-map-marker"
-                                aria-hidden="true">&nbsp;&nbsp;West Bengal</i>
-                        </span>
-                        <div class="vr"></div>
-                        <input class="form-control" type="search" placeholder="Search for products..."
+                        <form ">
+                            <input class=" form-control" type="search" placeholder="Search for products..."
                             aria-label="Search" />
+                        </form>
                     </div>
                 </div>
                 <div class="me-0 m-2 vr"></div>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="btn" href="#">
-                            <span class="position-relative btn-link me-2" style="text-decoration: none"><i
-                                    class="fa fa-heart" style="font-size: 20px"></i><span
+                        <a class="btn" href="<?=URLROOT?>/cart">
+                            <span class="position-relative"><i class="fa fa-shopping-cart" style="font-size: 20px"></i>
+                                <span
                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
-                                    style="font-size: 10px">9</span></span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn" href="cart-page.html">
-                            <span class="position-relative btn-link me-2"><i class="fa fa-shopping-cart"
-                                    style="font-size: 20px"></i><span
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
-                                    style="font-size: 10px">9</span></span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn" href="login.html">
-                            <span class="btn-link me-2"><i class="fa fa-user" style="font-size: 20px"></i></span>
+                                    style="font-size: 10px" id="cartCount"><?=countCart()?></span></span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
@@ -129,9 +109,14 @@
         </div>
         <div class="offcanvas-body p-0">
             <!-- {% isAuth query if true%} -->
+            <?php if(isAuth() != 0):?>
+            <?php else:?>
             <div class="border-bottom p-2 mx-4 d-flex justify-content-evenly">
-                <a href="" class="text-decoration-none">Login</a>/<a href=" " class="text-decoration-none">Sign up</a>
+                <a href="<?=URLROOT?>/login" class="text-decoration-none">Login</a>/<a href="<?=URLROOT?>/register"
+                    class="text-decoration-none">Sign up</a>
             </div>
+            <?php endif;?>
+
             <!-- {% else %} -->
             <ul class="navbar-nav p-4">
                 <p class="text-uppercase fw-bold text-muted text-light border-bottom m-0">Menu</p>

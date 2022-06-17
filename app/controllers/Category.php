@@ -7,13 +7,7 @@ class Category extends Controller{
     }
      
     public function index(){
-        
-        $c = count($url);
-        if($c !== 3)
-           $this->errorPage();
-    
-        if(isset($url[3]))
-            $this->view('Category',$data);  
+        $this->missingPage(); 
     }
 
     public function errorPage(){
@@ -23,17 +17,19 @@ class Category extends Controller{
         $name = $this->medcineModel->getCategoriesByName($url[$c-1]);
         if($c !== 4)
            $this->missingPage();
-           
-        $data = [
-        'title' => $name[0]->c_name,
-        'termname'=> 'Medicine One',
-        'count'=> '250',
-        'categoryList' => $this->medcineModel->getCategories(),
-        'medcineList' => $allMed,
-        'url' => $url[$c-1],
-        ];
-           
-        $this->view('Category',$data);
+        if(!empty($name)){
+            $data = [
+            'title' => $name[0]->c_name,
+            'termname'=> 'Medicine One',
+            'count'=> '250',
+            'categoryList' => $this->medcineModel->getCategories(),
+            'medcineList' => $allMed,
+            'url' => $url[$c-1],
+            ];
+            
+            $this->view('Category',$data);
+        }
+        $this->missingPage();
     }
 
     public function missingPage(){

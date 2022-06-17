@@ -22,6 +22,7 @@ class Controller{
                 }
                 else
                 header('Location:'. URLROOT);
+                
             }
           else
             header('Location:'. URLROOT . '/login');
@@ -31,6 +32,9 @@ class Controller{
                 require_once './views/'.$view.'.php';
             }
             else if($view == 'Login'){
+                require_once './views/'.$view.'.php';
+            }
+            else if($view == 'About'){
                 require_once './views/'.$view.'.php';
             }
             else{

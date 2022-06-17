@@ -26,6 +26,13 @@ class Medicine{
         return $result;
     }
 
+    public function getSearchData($search){
+        $this->db->query("SELECT * FROM `e_medicine` WHERE (`name` LIKE '%".$search."%') OR (`categories` LIKE '%".$search."%') OR (`long_dec` LIKE '%".$search."%')");
+        
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
     public function getMedicineByTag($slug){
         $this->db->query("SELECT * FROM `e_medicine` WHERE name_slug = :slug");
         $this->db->bind(':slug',$slug);

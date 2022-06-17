@@ -83,7 +83,8 @@
                 <p><?=$data['medicine']->long_dec?>
                 </p>
 
-                <button type="button" class="btn btn-lg" style="background-color:#ffb84d; color:#fff; width:180px;">Add
+                <button type="button" onclick="setCookie('<?=$data['medicine']->name_slug?>','medicine',20)"
+                    class="btn btn-lg" style="background-color:#ffb84d; color:#fff; width:180px;">Add
                     To Card <i class='fas fa-cart-plus' style='font-size:18px;color:#fff;'></i></button>
         </div>
     </div>
@@ -105,7 +106,8 @@
                             <div class="sq_box shadow">
                                 <div class="pdis_img">
                                     <a href="<?=URLROOT?>/medicine/<?=$med->name_slug?>">
-                                        <img src="<?=URLROOT?>/uploads/<?=$image[0]?>">
+                                        <img src="<?=URLROOT?>/uploads/<?=$image[0]?>"
+                                            style="object-fit: contain;width:100%">
                                     </a>
                                 </div>
                                 <a href="<?=URLROOT?>/medicine/<?=$med->name_slug?>"
@@ -121,19 +123,22 @@
                                     </span>
                                 </div>
                                 <div class="btn-box text-center">
-                                    <button class="btn btn-sm" onClick=""> <i class="fa fa-shopping-cart"></i>
-                                        Add to Cart </button>
+                                    <a class="btn btn-sm" type="button"
+                                        onclick="setCookie('<?=$med->name_slug?>','medicine',20)"> <i
+                                            class="fa fa-shopping-cart"></i>
+                                        Add to Cart </a>
                                 </div>
                             </div>
                         </div>
                         <?php endforeach;?>
                     </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<?php var_dump($_SESSION)?>
 <script>
 var swiper = new Swiper('.swiperThumb', {
     spaceBetween: 10,
@@ -153,14 +158,16 @@ var swiper2 = new Swiper('.swiperPruduct', {
 });
 
 var categorySwiper = new Swiper('.myswiper', {
-    loop: false,
+    // loop: false,
     pagination: {
         el: '.swiper-pagination',
         clickable: false,
     },
-    autoplay: {
-        delay: 2000,
-    },
+    // autoplay: {
+    //     delay: 2000,
+    // },
+    disableOnInteraction: false,
+    pauseOnMouseEnter: false,
     breakpoints: {
         500: {
             slidesPerView: 2,
@@ -180,8 +187,8 @@ var categorySwiper = new Swiper('.myswiper', {
         },
     },
     navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
     },
 });
 </script>

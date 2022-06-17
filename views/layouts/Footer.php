@@ -112,7 +112,43 @@
             <!-- Grid row -->
         </div>
     </section>
+    <script>
+    $("#cart").load(location.href + " #cart");
 
+    function setCookie(name, value, days) {
+        <?php if(isauth() != 0):?>
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        $('#cartCount').each(function() {
+            document.getElementById("cartCount").innerText = ++this.innerText;
+        });
+        <?php else:?>
+        window.location.replace('<?=URLROOT?>/login')
+        <?php endif;?>
+
+    }
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function eraseCookie(name) {
+        document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        location.reload();
+    }
+    </script>
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.35);">
         © 2021 Copyright:
         <a class="text-reset fw-bold" href="<?=URLROOT?>"><?=SITENAME?></a>

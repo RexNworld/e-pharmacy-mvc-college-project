@@ -166,7 +166,8 @@ var categorySwiper = new Swiper('.categorySwiper', {
                                         <p><?=intval((($med->s_price - $med->m_price)*100) /$med->s_price)?>%
                                             less</p>
                                     </a>
-                                    <button class="btn p-0 m-0">ADD TO CART</button>
+                                    <a class="btn p-0 m-0" type="button"
+                                        onclick="setCookie('<?=$med->name_slug?>','medicine',20)">ADD TO CART</a>
                                 </div>
                             </div>
                         </div>
@@ -249,7 +250,8 @@ var categorySwiper = new Swiper('.myswiper', {
                                         <p><?=intval((($med->s_price - $med->m_price)*100) /$med->s_price)?>%
                                             less</p>
                                     </a>
-                                    <button class="btn p-0 m-0">ADD TO CART</button>
+                                    <a class="btn p-0 m-0" type="button"
+                                        onclick="setCookie('<?=$med->name_slug?>','medicine',20)">ADD TO CART</a>
                                 </div>
                             </div>
                         </div>
@@ -332,7 +334,8 @@ var categorySwiper = new Swiper('.myswiper2', {
                                         <p><?=intval((($med->s_price - $med->m_price)*100) /$med->s_price)?>%
                                             less</p>
                                     </a>
-                                    <button class="btn p-0 m-0">ADD TO CART</button>
+                                    <a class="btn p-0 m-0" type="button"
+                                        onclick="setCookie('<?=$med->name_slug?>','medicine',20)">ADD TO CART</a>
                                 </div>
                             </div>
                         </div>
