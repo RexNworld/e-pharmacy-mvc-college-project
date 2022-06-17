@@ -14,6 +14,8 @@ class Dashboard extends Controller{
             $data = [
                 'title' => 'Dashboard',
                 'allUser' => $users,
+                'allmed' => $this->medcineModel->getMedicine(),
+                'alltag' => $this->medcineModel->getCategories(),
             ];
             $this->view('index', $data);
     }
@@ -544,11 +546,19 @@ class Dashboard extends Controller{
     }
 
     public function feedback(){
-        $this->view('feedback');
+        $data =[
+            'title' => 'Feedback',
+            'user' => '$data',
+        ];
+        $this->view('feedback',$data);
     }
 
     public function profile(){
-        $this->view('profile');
+        $data =[
+            'title' => 'My Profle',
+            'user' => '$data',
+        ];
+        $this->view('profile',$data);
     }
     
     public function errorPage(){

@@ -79,6 +79,34 @@
                             <span class="btn-link me-2"><i class="fa fa-user" style="font-size: 20px"></i></span>
                         </a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <div class="dropdown">
+                            <?php if(!empty($_SESSION['user_img'])):?>
+                            <button class="btn dropdown-toggle p-0" type="button" id="profileDropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="<?= URLROOT.'/uploads/'.$_SESSION['user_img'] ?>" width="40" height="40"
+                                    style="object-fit: cover" class="special-img" />
+                                <?php if(!empty($_SESSION['user_name'])):?>
+                                <?php $name = explode(' ',$_SESSION['user_name']); echo $name[0];?>
+                                <b class="caret"></b>
+                                <?php endif;?>
+                            </button>
+                            <?php else :?>
+                            <a href="<?=URLROOT?>/login">
+                                <img src="<?=URLROOT?>/public/assets/img/profile_pic.jpg" width="40" height="40"
+                                    style="object-fit: cover" class="special-img" />
+                            </a>
+                            <?php endif;?>
+
+                            <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                                <a class="dropdown-item" href="<?=URLROOT?>/profile">Profile</a>
+                                <?php if($_SESSION['user_type'] == 'SUPERADMIN') :?>
+                                <a class="dropdown-item" href="<?=URLROOT?>/dashboard">Dashboard</a>
+                                <?php endif;?>
+                                <a class="dropdown-item" href="<?=URLROOT?>/logout">Logout</a>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -91,11 +119,11 @@
                 <!-- Hello name -->
                 <!-- {% else %} -->
                 <?php if(isAuth() != 0):?>
-                Welcome <?=$_SESSION['user_name']?>
+                Welcome
+                <?=$_SESSION['user_name']?>
                 <?php else:?>
                 Welcome Guest
                 <?php endif;?>
-
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -138,3 +166,4 @@
         </div>
     </div>
     <div class="p-2"></div>
+</div>

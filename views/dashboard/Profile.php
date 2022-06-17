@@ -1,195 +1,174 @@
 <style>
-    
-.container_pro {
-    height: 500px;
-    width: 300px;
-    box-shadow: 0 10px 20px black;
-    background-size: cover;
-    justify-content: center;
-    align-items: center;
+.input-container {
+    position: relative;
+    margin-bottom: 25px;
+    display: inline;
+}
+
+.input-container label {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 16px;
+    color: #808080;
+    pointer-event: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.input-container input {
+    border: 0;
+    border-bottom: 1px solid #555;
+    background: transparent;
+    width: 30%;
+    padding: 8px 0 5px 0;
+    font-size: 16px;
+    color: black;
+}
+
+.input-container input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+}
+
+.input-container input:focus~label,
+.input-container input:valid~label {
+    top: -12px;
+    font-size: 12px;
+
+}
+
+/* for profile pic update */
+.picture-container {
+    position: relative;
+    cursor: pointer;
     text-align: center;
-    overflow: hidden;
-    font-family: 'Abel', sans-serif;
-    border-radius:10px;
-    
 }
 
-.image {
-    height: 150px;
-    width: 150px;
-    background-size: cover;
+.picture {
+    width: 106px;
+    height: 106px;
+    background-color: #999999;
+    border: 4px solid #CCCCCC;
+    color: #FFFFFF;
     border-radius: 50%;
-    border: 8px solid white;
-    position: relative;
-    top: 180px;
-    margin-left: 150px;
-    box-shadow: 0 2px 15px rgb(58, 54, 54);
-    transform: rotate(-20deg);
+    margin: 0px auto;
+    overflow: hidden;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
 }
 
-.shape {
-    height: 250px;
-    width: 400px;
-    background-color: #006622;
-    margin-left: -20px;
-    position: relative;
-    top: -80px;
-    box-shadow: 0 2px 15px black;
-    transform: rotate(25deg);
+.picture:hover {
+    border-color: #2ca8ff;
 }
 
-h3 {
-    padding-top:13px;
-    font-family: 'Montserrat', sans-serif;
+.picture input[type="file"] {
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0 !important;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
-.title {
-    margin-bottom: 10px;
-    color: rgb(105, 100, 109);
+.picture-src {
+    width: 100%;
 }
 
-p {
-    padding-left: 30px;
-    padding-right: 30px;
-    color: rgb(105, 100, 109);
+.pro_bg {
+    background-image: url(https://static.vecteezy.com/system/resources/previews/002/127/140/original/medical-insurance-concept-illustration-a-man-filling-medical-document-form-can-use-for-web-homepage-mobile-apps-web-banner-character-cartoon-illustration-flat-style-free-vector.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
+</style>
 
-.btnn {
-  background-color: #006622;
-  border: none;
-  color: white;
-  padding: 12px 30px;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-/* Darker background on mouse-over */
-.btnn:hover {
-  background-color: #00cc99;
-}
-    </style>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-md-9">
-            <div class="card p-4 shadow-sm">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="product-tab" data-bs-toggle="tab" data-bs-target="#product"
-                            type="button" role="tab" aria-controls="product" aria-selected="true">
-                            Product Details
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="campsite-tab" data-bs-toggle="tab" data-bs-target="#campsite"
-                            type="button" role="tab" aria-controls="campsite" aria-selected="false">
-                            Campsite Details
-                        </button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active bg-white p-4" id="product" role="tabpanel"
-                        aria-labelledby="product-tab">
-                        <!-- Tab 1 -->
-                        <table class="table table-hover text-center my-0" id="ProductsTable">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Tags</th>
-                                    <th>Ratings</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr id="product_{{product['pid']}}">
-                                    <td class="d-flex justify-content-start">
-                                        <a href="products/{{product['pid']}}"><img class="me-2" width="30" height="30"
-                                                src="{{product['productImg']}}" />{{product['productName']}}</a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex justify-content-start">{{product['tags']}}</span>
-                                    </td>
-                                    <td>{{product['rating']}}</td>
-                                    <td>{{product['mPrice']}}</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Tags</th>
-                                    <th>Ratings</th>
-                                    <th>Price</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        <!-- Tab 1 -->
-                    </div>
-                    <div class="tab-pane fade bg-white  p-4" id="campsite" role="tabpanel"
-                        aria-labelledby="campsite-tab">
-                        <!-- Tab 2 -->
-                        <table class="table table-hover text-center my-0" id="CampsiteTable">
-                            <thead>
-                                <tr>
-                                    <th>Camp Name</th>
-                                    <th>Facilities</th>
-                                    <th>Tehicle</th>
-                                    <th>Entry Fee</th>
-                                    <th>Address</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr id="campsite_{{campsite['cid']}}">
-                                    <td class="d-flex justify-content-start">
-                                        <a href="campsite/{{campsite['cid']}}"><img class="rounded-circle me-2"
-                                                width="30" height="30"
-                                                src="{{campsite['campsiteImg']}}" />{{campsite['campsiteName']}}</a>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-primary">{{act}}</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-primary">{{act}}</span>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex justify-content-start">{{campsite['entryFee']}}</span>
-                                    </td>
-                                    <td>{{campsite['address']}}</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Camp Name</th>
-                                    <th>Facilities</th>
-                                    <th>Tehicle</th>
-                                    <th>Entry Fee</th>
-                                    <th>Address</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        <!-- Tab 2 -->
-                    </div>
-                </div>
-                <!-- <hr> -->
-
-            </div>
-        </div>
-        <div class="col-md-3">
-                    <div class="container_pro">
-                        <div class="shape">
-                            <div class="image" style="background-image: url('<?=URLROOT?>/public/images/gandu.jpeg');"></div>
+        <h2 style="font-weight:bold; color:#000;">My Profile</h2>
+        <hr style="width:100px; height:3px; margin-left:13px; color:#00e6ac;">
+        <form id="register" method="post">
+            <div class="row">
+                <div class="col-md-5 col-12">
+                    <div class="picture-container">
+                        <div class="picture">
+                            <img src="https://stahnu.cz/data/stahnu.cz/appimages/54/54737.jpg" class="picture-src"
+                                id="wizardPicturePreview" title="">
+                            <input type="file" id="wizard-picture" class="" />
                         </div>
-                        <h3>Reshav Sahani</h3>
-                        <h3 class="title">Full Stack developer</h3>
-                        <p>Web Designer,UI designer,photographer,web developer,etc</p>
-                        
-                        <button class="btnn" style="width:100%">Update</button>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 py-4">
+                                <div class="input-container pt-2 mb-2">
+                                    <input type="text" required="" style="width:100%;" />
+                                    <label>First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 py-4">
+                                <div class="input-container pt-2 mb-2">
+                                    <input type="text" required="" style="width:100%;" />
+                                    <label>Last Name</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 py-4">
+                            <div class="input-container pt-2 mb-2">
+                                <input type="number" required="" style="width:100%;" />
+                                <label>Phone no.</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 py-4">
+                            <div class="input-container pt-2 mb-2">
+                                <input type="text" disabled required="" style="width:100%;" />
+                                <label>Username</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 py-4">
+                            <div class="input-container pt-2 mb-2">
+                                <input type="email" disabled required="" style="width:100%;" />
+                                <label>E-mail</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 py-4">
+                            <div class="input-container pt-2 mb-2">
+                                <input type="password" required="" style="width:100%;" />
+                                <label>Password</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 py-4">
+                            <div class="input-container pt-2 mb-2">
+                                <input type="text" required="" style="width:100%;" />
+                                <label>Address</label>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="col-md-7 col-12 pro_bg">
                 </div>
             </div>
 
+
+            <p><input type="checkbox"> I accept all the Term & Conditions of E-pharmacy.</p>
+            <button type="button" class="btn btn-outline-success">Update</button>
+        </form>
+    </div>
 </div>
+<!-- script for profile change -->
 <script>
 $(document).ready(function() {
-    $('#ProductsTable').DataTable();
-    $('#CampsiteTable').DataTable();
+    $("#wizard-picture").change(function() {
+        readURL(this);
+    });
 });
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 </script>

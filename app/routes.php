@@ -26,8 +26,8 @@ class Routes{
                 return 'index';
             case 'category':
                 return 'index';
-            case 'product_details':
-                return 'product_details';
+            case 'cart':
+                return 'cart';
             case 'profile':
                 return 'profile';
             case 'register':

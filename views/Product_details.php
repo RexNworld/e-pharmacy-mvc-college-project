@@ -1,211 +1,4 @@
 <style>
-.p_pic {
-    position: relative;
-}
-
-.p_img {
-    vertical-align: middle;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    height: 100%;
-}
-
-.piclist li {
-    display: inline-block;
-    width: 90px;
-    height: 114px;
-    border: 1px solid #eee;
-}
-
-.piclist li img {
-    width: 97%;
-    height: auto;
-}
-
-.row-sm .col-md-6 {
-    .$_COOKIE padding-left: 5px;
-    padding-right: 5px;
-}
-
-/*===pic-list===*/
-.p_box .p-show {
-    width: 90px;
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 0px;
-}
-
-.p_box .p-show ul.piclist {
-    padding-left: 0px;
-    top: 0px;
-}
-
-.p_box .product_image {
-    width: 80%;
-    display: inline-block;
-}
-
-
-.p_box .product_image .p_pic img.p_img {
-    width: 100%;
-}
-
-@media only screen and (max-width: 500px) {
-    .p_box .product_image .p_pic img.p_img {
-        width: 100%;
-        height: 400px;
-    }
-
-    .p_box .product_image {
-        width: 70%;
-        display: inline-block;
-    }
-
-    .rating {
-        display: none;
-    }
-}
-
-.piclist li img {
-    height: 100px;
-    object-fit: cover;
-}
-
-
-
-/*=========Related items==========*/
-.title_bx h3.title {
-    font-size: 22px;
-    text-transform: capitalize;
-    position: relative;
-    color: #00cc99;
-    font-weight: 700;
-    line-height: 1.2em;
-}
-
-.title_bx h3.title:before {
-    content: "";
-    height: 2px;
-    width: 20%;
-    position: absolute;
-    left: 0px;
-    z-index: 1;
-    top: 40px;
-    background-color: #00cc99;
-}
-
-.title_bx h3.title:after {
-    content: "";
-    height: 2px;
-    width: 100%;
-    position: absolute;
-    left: 0px;
-    top: 40px;
-    background-color: #00cc99;
-}
-
-.common_wd .owl-nav .owl-prev,
-.common_wd .owl-nav .owl-next {
-    background-color: #00cc99 !important;
-    display: block;
-    height: 30px;
-    width: 30px;
-    text-align: center;
-    border-radius: 0px !important;
-}
-
-.owl-nav .owl-next {
-    right: -10px;
-}
-
-.owl-nav .owl-prev,
-.owl-nav .owl-next {
-    top: 50%;
-    position: absolute;
-}
-
-.common_wd .owl-nav .owl-prev i,
-.common_wd .owl-nav .owl-next i {
-    color: #fff;
-    font-size: 14px !important;
-    position: relative;
-    top: -1px;
-}
-
-.common_wd .owl-nav {
-    position: absolute;
-    top: -21%;
-    right: 4px;
-    width: 65px;
-}
-
-.owl-nav .owl-prev i,
-.owl-nav .owl-next i {
-    left: 0px;
-}
-
-._p-qty .decrease_ {
-    position: relative;
-    right: -5px;
-    top: 3px;
-}
-
-._p-qty .increase_ {
-    position: relative;
-    top: 3px;
-    left: -5px;
-}
-
-/*========related box========*/
-.sq_box {
-    padding-bottom: 5px;
-    border-bottom: solid 2px #00cc99;
-    background-color: #fff;
-    text-align: center;
-    padding: 15px 10px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-}
-
-.sq_box h4 {
-    font-size: 18px;
-    text-align: center;
-    font-weight: 500;
-    color: #00cc99;
-    margin-top: 10px;
-    margin-bottom: 10px !important;
-}
-
-.sq_box .price-box {
-    margin-bottom: 15px !important;
-}
-
-.sq_box .btn {
-    border-radius: 50px;
-    padding: 5px 13px;
-    font-size: 15px;
-    color: #fff;
-    background-color: #00cc99;
-    font-weight: 600;
-}
-
-.sq_box .price-box span.price {
-    text-decoration: line-through;
-    color: #00cc99;
-}
-
-.sq_box .price-box span.offer-price {
-    color: #28a745;
-}
-
-.sq_box img {
-    object-fit: cover;
-    height: 150px !important;
-    margin-top: 20px;
-}
-
 #more {
     display: none;
 }
@@ -231,7 +24,9 @@
                         </div>
                         <div class="product_image">
                             <div class="p_pic">
-                                <img class="p_img" src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg" alt="">
+                                <img class="p_img"
+                                    src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg"
+                                    alt="">
                             </div>
                         </div>
                     </div>
@@ -295,10 +90,12 @@
                         <div class="sq_box shadow">
                             <div class="pdis_img">
                                 <a href="#">
-                                    <img src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
+                                    <img
+                                        src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
                                 </a>
                             </div>
-                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a> </h4>
+                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a>
+                            </h4>
                             <div class="price-box mb-2">
                                 <span class="price"> Price <i class="fa fa-inr"></i> 200 </span>
                                 <span class="offer-price"> Offer Price <i class="fa fa-inr"></i> 120 </span>
@@ -313,10 +110,12 @@
                         <div class="sq_box shadow">
                             <div class="pdis_img">
                                 <a href="#">
-                                    <img src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
+                                    <img
+                                        src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
                                 </a>
                             </div>
-                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a> </h4>
+                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a>
+                            </h4>
                             <div class="price-box mb-2">
                                 <span class="price"> Price <i class="fa fa-inr"></i> 200 </span>
                                 <span class="offer-price"> Offer Price <i class="fa fa-inr"></i> 120 </span>
@@ -331,10 +130,12 @@
                         <div class="sq_box shadow">
                             <div class="pdis_img">
                                 <a href="#">
-                                    <img src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
+                                    <img
+                                        src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
                                 </a>
                             </div>
-                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a> </h4>
+                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a>
+                            </h4>
                             <div class="price-box mb-2">
                                 <span class="price"> Price <i class="fa fa-inr"></i> 200 </span>
                                 <span class="offer-price"> Offer Price <i class="fa fa-inr"></i> 120 </span>
@@ -349,10 +150,12 @@
                         <div class="sq_box shadow">
                             <div class="pdis_img">
                                 <a href="#">
-                                    <img src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
+                                    <img
+                                        src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
                                 </a>
                             </div>
-                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a> </h4>
+                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a>
+                            </h4>
                             <div class="price-box mb-2">
                                 <span class="price"> Price <i class="fa fa-inr"></i> 200 </span>
                                 <span class="offer-price"> Offer Price <i class="fa fa-inr"></i> 120 </span>
@@ -367,10 +170,12 @@
                         <div class="sq_box shadow">
                             <div class="pdis_img">
                                 <a href="#">
-                                    <img src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
+                                    <img
+                                        src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
                                 </a>
                             </div>
-                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a> </h4>
+                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a>
+                            </h4>
                             <div class="price-box mb-2">
                                 <span class="price"> Price <i class="fa fa-inr"></i> 200 </span>
                                 <span class="offer-price"> Offer Price <i class="fa fa-inr"></i> 120 </span>
@@ -385,10 +190,12 @@
                         <div class="sq_box shadow">
                             <div class="pdis_img">
                                 <a href="#">
-                                    <img src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
+                                    <img
+                                        src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
                                 </a>
                             </div>
-                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a> </h4>
+                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a>
+                            </h4>
                             <div class="price-box mb-2">
                                 <span class="price"> Price <i class="fa fa-inr"></i> 200 </span>
                                 <span class="offer-price"> Offer Price <i class="fa fa-inr"></i> 120 </span>
@@ -404,10 +211,12 @@
                             <div class="pdis_img">
 
                                 <a href="#">
-                                    <img src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
+                                    <img
+                                        src="https://5.imimg.com/data5/HG/OC/EI/SELLER-1943484/metformin-hydrochloride-tablets-ip-500x500.jpg">
                                 </a>
                             </div>
-                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a> </h4>
+                            <h4 class="mb-1"> <a href="#" style="text-decoration:none; color:#2e2e1f;"> Insulin </a>
+                            </h4>
                             <div class="price-box mb-2">
                                 <span class="price"> Price <i class="fa fa-inr"></i> 200 </span>
                                 <span class="offer-price"> Offer Price <i class="fa fa-inr"></i> 120 </span>

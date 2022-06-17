@@ -3,7 +3,6 @@ class Pages extends Controller{
     public function __construct(){
         $this->userModel = $this->model('User');
         $this->medcineModel = $this->model('Medicine');
-        
     }
 
     public function index(){
@@ -12,10 +11,28 @@ class Pages extends Controller{
           'author' => 'Reshav Sahani',  
           'date' => '23/05/2022',
           'categoryList' => $this->medcineModel->getCategories(),
+          'categoryPain' => $this->getMedicineByTag('covid-care'),
+          'categoryOral' => $this->getMedicineByTag('oral-care'),
+          'categoryMind' => $this->getMedicineByTag('mind-care'),
         ];
         $this->view('Home',$data);        
     }
-
+    
+    public function getMedicineByTag($slug){
+      $medicine = $this->medcineModel->getMedicine();
+      $resultMed = [];
+      foreach($medicine as $med){
+          $getTag = explode(',',$med->categories);
+          foreach($getTag as $tag){
+              $tags = str_replace(' ', '-',strtolower(trim($tag)));
+              if($tags === $slug){
+                  $resultMed[] = $med;
+              }
+          }
+      }
+      return $resultMed;
+    }
+  
     public function about(){
         $this->view('About');        
     }
@@ -32,10 +49,9 @@ class Pages extends Controller{
         $this->view('404');
     }
 
-    public function user(){
-        $users = $this->userModel->getUsers();
-        $data = ['users' => $users];
-        $this->view('User', $data);
+    public function cart(){
+        $data = ['title' => 'My Cart'];
+        $this->view('Cart', $data);
     }
 
     public function register(){
@@ -202,6 +218,7 @@ class Pages extends Controller{
       unset($_SESSION['user_status']);
       unset($_SESSION['user_secret_name']);
       unset($_SESSION['user_secret_id']);
+      unset($_SESSION['user_img']);
       header('Location:'. URLROOT);
     }
 

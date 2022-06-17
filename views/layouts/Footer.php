@@ -44,9 +44,9 @@
                                 srcset="" class="d-inline-block align-text-top logo-navbar" /></a>
                     </h6>
                     <p>
-                        Professional Bringing The Customer Comfortability. Our Aim Is To Provide The All The Medical
-                        Services To The Customer At
-                        Their Doorstep Also Maintaining The Price Ratio.
+                        We, at E-pharmacy delivers the right medicine to the customer at reasonable rate, Our aim is to
+                        provide the all the medical services to the customer at their doorstep also maintaining the
+                        price ratio.
                     </p>
                 </div>
                 <!-- Grid column -->
@@ -118,6 +118,7 @@
         <a class="text-reset fw-bold" href="<?=URLROOT?>"><?=SITENAME?></a>
     </div>
     <script src="<?= URLROOT?>/public/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?= URLROOT?>/public/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- <script src="/public/assets/js/Chart.bundle.min.js"></script> -->
     <!-- <script src="/public/assets/js/bs-init.js"></script> -->
     <script src="<?= URLROOT?>/public/assets/js/theme.js"></script>

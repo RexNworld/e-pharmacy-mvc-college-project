@@ -22,7 +22,6 @@ class Controller{
                 }
                 else
                 header('Location:'. URLROOT);
-                
             }
           else
             header('Location:'. URLROOT . '/login');

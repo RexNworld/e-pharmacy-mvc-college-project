@@ -9,3 +9,8 @@
             return false;
         }
     }
+
+    function addToCart($product){
+        die("Now");
+        setcookie( "TestCookie", $product, strtotime( '+30 days' ) );
+    }

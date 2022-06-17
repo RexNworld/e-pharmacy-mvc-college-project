@@ -7,9 +7,8 @@
     <div class="row">
         <?php 
         $box->box(count($data['allUser']),'Total User','fas fa-user-plus','bg-info','link'); 
-        $box->box('15','Change Me','fas fa-shopping-bag','bg-success','link'); 
-        $box->box('5','Appointment','fas fa-calendar-day','bg-warning','link'); 
-        $box->box('10','Feedback','fas fa-comment-dots','bg-danger','link'); 
+        $box->box(count($data['allmed']),'Total Medicine','fas fa-shopping-bag','bg-success','link'); 
+        $box->box(count($data['alltag']),'Total Category','fas fa-calendar-day','bg-warning','link'); 
         ?>
     </div>
     <div class="row">
@@ -23,31 +22,27 @@
                     <table id="medicineTable" class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Date</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach($data['allmed'] as $item) :?>
+                            <?php $img = explode(',',$item->image);?>
                             <tr>
-                                <td scope="row">1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <td scope="row"><img src="<?=URLROOT?>/uploads/<?=$img[0]?>" width="50px"></td>
+                                <td><?=$item->name?></td>
+                                <td><?=$item->categories?></td>
+                                <td><?=$item->m_price?></td>
+                                <td><?=$item->stock?></td>
+                                <td><?=$item->date?></td>
                             </tr>
-                            <tr>
-                                <td scope="row">2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">3</td>
-                                <td>Larry the Bird</td>
-                                <td>@twitter</td>
-                                <td>@twitter</td>
-                            </tr>
+                            <?php endforeach;?>
+
                         </tbody>
                     </table>
                 </div>

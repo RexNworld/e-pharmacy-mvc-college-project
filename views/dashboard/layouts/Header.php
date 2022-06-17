@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="<?= URLROOT?>/public/assets/App.css">
     <link rel="stylesheet" href="<?= URLROOT?>/public/assets/dataTables/css/jquery.dataTables.min.css">
-    <link href="<?= URLROOT?>/public/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<?= URLROOT?>/public/assets/bootstrap/css.old/bootstrap.min.css" rel="stylesheet" />
     <!-- <link href="<?= URLROOT?>/public/assets/css/adminlte.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="<?= URLROOT?>/public/assets/owlcarousel/owl.carousel.min.css" />
     <link rel="stylesheet" href="<?= URLROOT?>/public/assets/owlcarousel/owl.theme.default.min.css" />

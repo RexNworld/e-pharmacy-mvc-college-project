@@ -1,8 +1,9 @@
 <?php
 class Medicine extends Controller{
+
     public function __construct(){
         $this->userModel = $this->model('User');
-        $this->medcineModel = $this->model('Medicine');
+        $this->medcineModel = $this->model('MedicinePage');
         $this->url = $this->getUrl();
     }
      
@@ -19,17 +20,18 @@ class Medicine extends Controller{
     public function errorPage(){
         $c = count($this->url);
         $url = $this->url;
-        $allMed = $this->getMedicineByTag($url[$c-1]);
-        // $name = $this->medcineModel->getCategoriesByName($url[$c-1]);
+        $allMed = $this->medcineModel->getMedicineByTag($url[$c-1]);
+        $categoryP = $this->getMedicineByTag($allMed[0]->categories);
         if($c !== 4)
            $this->missingPage();
            
         $data = [
-        'title' => $name[0]->c_name,
+        'title' => $allMed[0]->name,
         'termname'=> 'Medicine One',
         'count'=> '250',
         'categoryList' => $this->medcineModel->getCategories(),
-        'medcineList' => $allMed,
+        'medicine' => $allMed[0],
+        'related' => $categoryP,
         'url' => $url[$c-1],
         ];
            
@@ -40,20 +42,20 @@ class Medicine extends Controller{
         $this->view('404');
     }
     
-    // public function getMedicineByTag($slug){
-    //     $medicine = $this->medcineModel->getMedicine();
-    //     $resultMed = [];
-    //     foreach($medicine as $med){
-    //         $getTag = explode(',',$med->categories);
-    //         foreach($getTag as $tag){
-    //             $tags = str_replace(' ', '-',strtolower(trim($tag)));
-    //             if($tags === $slug){
-    //                 $resultMed[] = $med;
-    //             }
-    //         }
-    //     }
-    //     return $resultMed;
-    // }
+    public function getMedicineByTag($slug){
+        $medicine = $this->medcineModel->getMedicine();
+        $resultMed = [];
+        foreach($medicine as $med){
+            $getTag = explode(',',$med->categories);
+            $getTag2 = explode(',',$slug);
+            foreach($getTag as $tag){
+                if($getTag === $getTag2){
+                    $resultMed[] = $med;
+                }
+            }
+        }
+        return $resultMed;
+    }
     
     public function getUrl(){
         if(isset($_GET['url'])){

@@ -81,8 +81,11 @@
 </section>
 <section style="margin: 0">
     <div class="container-fluid">
-        <h3>Shop by health conditions</h3>
-        <hr />
+        <div class="row">
+            <div class="col-sm-12 title_bx">
+                <h3 class="title"> All Catgories </h3>
+            </div>
+        </div>
         <div class="swiper categorySwiper">
             <div class="swiper-wrapper">
                 <?php foreach($data['categoryList'] as $tag):?>
@@ -101,8 +104,11 @@
 </section>
 <script>
 var categorySwiper = new Swiper('.categorySwiper', {
-    loop: true,
-
+    loop: false,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: false,
+    },
     breakpoints: {
         200: {
             slidesPerView: 2,
@@ -127,374 +133,252 @@ var categorySwiper = new Swiper('.categorySwiper', {
     },
 });
 </script>
-<section>
+<section class="sec bg-light">
     <div class="container-fluid">
-        <h3>Shop by health conditions</h3>
-        <hr />
-
-        <div class="owl-carousel owl-theme" id="owl-shop1">
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">1</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">2</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">3</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">4</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
-            </div>
-
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">5</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">6</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">7</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
+        <div class="row">
+            <div class="col-sm-12 title_bx">
+                <h3 class="title"> Covid Care </h3>
             </div>
         </div>
-    </div>
-</section>
+        <div class="row">
+            <div class="col-md-12 list-slider mt-4">
+                <div class="swiper myswiper common_wd  owl-theme" id="recent_post">
+                    <div class="swiper-wrapper">
+                        <?php foreach($data['categoryPain'] as $med):?>
+                        <?php $image = explode(',',$med->image)?>
+                        <div class="swiper-slide item">
+                            <div href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise"
+                                style="min-width: 200px;max-width: 200px;border-radius: 10px !important;">
+                                <div class="row">
+                                    <a href="<?=URLROOT?>/medicine/<?=$med->name_slug?>">
+                                        <div class="col-12">
+                                            <img src="<?=URLROOT?>/uploads/<?=$image[0]?>" alt="" width="70" height="70"
+                                                class="src" />
+                                        </div>
+                                        <p class="fs-6 border-bottom mx-auto w-75"
+                                            style="overflow: hidden;white-space: nowrap; text-overflow: ellipsis">
+                                            <?=$med->name?></p>
+                                        <p class="fs-5 text-success">
+                                            MRP(<span
+                                                class="text-decoration-line-through text-black-50">₹<?=$med->s_price?></span>)<br />
+                                            ₹<?= $med->m_price?>
+                                        </p>
+                                        <p><?=intval((($med->s_price - $med->m_price)*100) /$med->s_price)?>%
+                                            less</p>
+                                    </a>
+                                    <button class="btn p-0 m-0">ADD TO CART</button>
+                                </div>
+                            </div>
+                        </div>
 
-<section>
-    <div class="container-fluid">
-        <h3>Shop by health conditions</h3>
-        <hr />
-
-        <div class="owl-carousel owl-theme" id="owl-shop2">
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">1</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
+                        <?php endforeach;?>
                     </div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">2</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">3</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">4</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
-            </div>
-
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">5</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">6</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise" style="
-                min-width: 200px;
-                max-width: 200px;
-                border-radius: 10px !important;
-              ">
-                    <div class="row">
-                        <div class="col-12">
-                            <img src="<?= URLROOT?>/public/assets/img/icons/icons8-adult--50.png" alt="" width="70"
-                                height="70" class="src" />
-                        </div>
-                        <p class="fs-6 border-bottom mx-auto w-75">7</p>
-                        <p class="fs-5 text-success">
-                            MRP(<span class="text-decoration-line-through text-black-50">RS. 975</span>)<br />
-                            RS. 858
-                        </p>
-                        <p>25% less</p>
-                        <button class="btn p-0 m-0">ADD TO CART</button>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
 <script>
-$('#owl-category').each(function() {
-    $(this).owlCarousel({
-        loop: true,
-        center: true,
-        autoWidth: true,
-        autoplay: false,
-        smartSpeed: 500,
-        dots: false,
-        navigation: false,
-        nav: false,
-        lazyLoad: true,
-    });
-    // $('.category-next').click(function () {
-    //   $('#owl-category').trigger('next.owl.carousel');
-    // });
-    // $('.category-prev').click(function () {
-    //   $('#owl-category').trigger('prev.owl.carousel', [300]);
-    // });
+var categorySwiper = new Swiper('.myswiper', {
+    loop: false,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: false,
+    },
+    autoplay: {
+        delay: 2000,
+    },
+    breakpoints: {
+        200: {
+            slidesPerView: 2,
+            spaceBetween: 1,
+        },
+        500: {
+            slidesPerView: 2,
+            spaceBetween: 5,
+        },
+        640: {
+            slidesPerView: 3,
+            spaceBetween: 10,
+        },
+        768: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+        },
+        1024: {
+            slidesPerView: 7,
+            spaceBetween: 20,
+        },
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
 });
-$('#owl-shop1').each(function() {
-    $(this).owlCarousel({
-        loop: true,
-        center: true,
-        autoWidth: true,
-        autoplay: true,
-        smartSpeed: 500,
-        dots: false,
-        navigation: false,
-        nav: false,
-        lazyLoad: true,
-    });
-    $('.next').click(function() {
-        $('#owl-shop').trigger('next.owl.carousel');
-    });
-    $('.prev').click(function() {
-        $('#owl-shop1').trigger('prev.owl.carousel', [300]);
-    });
+</script>
+<section class="sec">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 title_bx">
+                <h3 class="title"> Oral Care </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 list-slider mt-4">
+                <div class="swiper myswiper2 common_wd  owl-theme" id="recent_post">
+                    <div class="swiper-wrapper">
+                        <?php foreach($data['categoryOral'] as $med):?>
+                        <?php $image = explode(',',$med->image)?>
+                        <div class="swiper-slide item">
+                            <div href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise"
+                                style="min-width: 200px;max-width: 200px;border-radius: 10px !important;">
+                                <div class="row">
+                                    <a href="<?=URLROOT?>/medicine/<?=$med->name_slug?>">
+                                        <div class="col-12">
+                                            <img src="<?=URLROOT?>/uploads/<?=$image[0]?>" alt="" width="70" height="70"
+                                                class="src" />
+                                        </div>
+                                        <p class="fs-6 border-bottom mx-auto w-75"
+                                            style="overflow: hidden;white-space: nowrap; text-overflow: ellipsis">
+                                            <?=$med->name?></p>
+                                        <p class="fs-5 text-success">
+                                            MRP(<span
+                                                class="text-decoration-line-through text-black-50">₹<?=$med->s_price?></span>)<br />
+                                            ₹<?= $med->m_price?>
+                                        </p>
+                                        <p><?=intval((($med->s_price - $med->m_price)*100) /$med->s_price)?>%
+                                            less</p>
+                                    </a>
+                                    <button class="btn p-0 m-0">ADD TO CART</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php endforeach;?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+var categorySwiper = new Swiper('.myswiper2', {
+    loop: false,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: false,
+    },
+    autoplay: {
+        delay: 2000,
+    },
+    breakpoints: {
+        200: {
+            slidesPerView: 2,
+            spaceBetween: 1,
+        },
+        500: {
+            slidesPerView: 2,
+            spaceBetween: 5,
+        },
+        640: {
+            slidesPerView: 3,
+            spaceBetween: 10,
+        },
+        768: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+        },
+        1024: {
+            slidesPerView: 7,
+            spaceBetween: 20,
+        },
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
 });
-$('#owl-shop2').each(function() {
-    $(this).owlCarousel({
-        loop: true,
-        center: true,
-        autoWidth: true,
-        autoplay: true,
-        smartSpeed: 500,
-        dots: false,
-        nav: false,
-        navText: [
-            "<div class='nav-button owl-prev'>‹</div>",
-            "<div class='nav-button owl-next'>›</div>",
-        ],
-        lazyLoad: true,
-    });
+</script>
+<section class="sec">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 title_bx">
+                <h3 class="title"> Mind Care </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 list-slider mt-4">
+                <div class="swiper myswiper3 common_wd  owl-theme" id="recent_post">
+                    <div class="swiper-wrapper">
+                        <?php foreach($data['categoryMind'] as $med):?>
+                        <?php $image = explode(',',$med->image)?>
+                        <div class="swiper-slide item">
+                            <div href="#" class="btn btn-sm shadow-sm bg-body rounded m-2 btn-rise"
+                                style="min-width: 200px;max-width: 200px;border-radius: 10px !important;">
+                                <div class="row">
+                                    <a href="<?=URLROOT?>/medicine/<?=$med->name_slug?>">
+                                        <div class="col-12">
+                                            <img src="<?=URLROOT?>/uploads/<?=$image[0]?>" alt="" width="70" height="70"
+                                                class="src" />
+                                        </div>
+                                        <p class="fs-6 border-bottom mx-auto w-75"
+                                            style="overflow: hidden;white-space: nowrap; text-overflow: ellipsis">
+                                            <?=$med->name?></p>
+                                        <p class="fs-5 text-success">
+                                            MRP(<span
+                                                class="text-decoration-line-through text-black-50">₹<?=$med->s_price?></span>)<br />
+                                            ₹<?= $med->m_price?>
+                                        </p>
+                                        <p><?=intval((($med->s_price - $med->m_price)*100) /$med->s_price)?>%
+                                            less</p>
+                                    </a>
+                                    <button class="btn p-0 m-0">ADD TO CART</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php endforeach;?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+var categorySwiper = new Swiper('.myswiper3', {
+    loop: false,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: false,
+    },
+    autoplay: {
+        delay: 2000,
+    },
+    breakpoints: {
+        200: {
+            slidesPerView: 2,
+            spaceBetween: 1,
+        },
+        500: {
+            slidesPerView: 2,
+            spaceBetween: 5,
+        },
+        640: {
+            slidesPerView: 3,
+            spaceBetween: 10,
+        },
+        768: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+        },
+        1024: {
+            slidesPerView: 7,
+            spaceBetween: 20,
+        },
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
 });
 </script>

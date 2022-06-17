@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="<?= URLROOT?>/public/assets/owlcarousel/owl.carousel.min.css" />
     <link rel="stylesheet" href="<?= URLROOT?>/public/assets/owlcarousel/owl.theme.default.min.css" />
     <link rel="stylesheet" href="<?= URLROOT?>/public/assets/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="<?= URLROOT?>/public/assets/css/anim.css" />
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css">
 
