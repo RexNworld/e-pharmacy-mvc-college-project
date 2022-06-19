@@ -43,9 +43,15 @@
             <div class="collapse navbar-collapse">
                 <div class="ms-auto">
                     <div class="input-group">
-                        <form ">
-                            <input class=" form-control" type="search" placeholder="Search for products..."
-                            aria-label="Search" />
+                        <form>
+                            <div class="wrap_search">
+                                <div class="searchs">
+                                    <input type="text" class="searchTerm" placeholder="What are you looking for?">
+                                    <button type="submit" class="searchButton">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
