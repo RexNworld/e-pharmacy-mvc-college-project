@@ -1,3 +1,8 @@
+<style>
+    .form-control:hover{
+        box-shadow:none;
+    }
+    </style>
 <div class="sticky-top">
     <nav class="bg-dark d-none d-md-block">
         <div class="container">
@@ -44,13 +49,11 @@
                 <div class="ms-auto">
                     <div class="input-group">
                         <form>
-                            <div class="wrap_search">
-                                <div class="searchs">
-                                    <input type="text" class="searchTerm" placeholder="What are you looking for?">
-                                    <button type="submit" class="searchButton">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" style="border-top-left-radius: 15px; border-bottom-left-radius: 15px; background-color:#e6fff2;" placeholder="Search for..."
+                                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <button class="btn btn-outline" type="button" style="border-top-right-radius: 15px; border-bottom-right-radius: 15px; background-color:#e6fff2; border:1px solid #798686;"
+                                    id="button-addon2"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </div>
                         </form>
                     </div>
