@@ -31,6 +31,12 @@ class Routes{
                 return 'cart';
             case 'emptyCart':
                 return 'cart';
+            case 'cart-summary':
+                return 'cartSummary';
+            case 'orderdone':
+                return 'orderdone';
+            case 'orders':
+                return 'order';
             case 'search':
                 return 'search';
             case 'profile':

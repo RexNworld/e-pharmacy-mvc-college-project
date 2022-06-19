@@ -554,10 +554,6 @@ form .category label .dot {
   border-color: #d9d9d9;
 }
 
-form input[type='radio'] {
-  display: none;
-}
-
 form .button {
   height: 45px;
   margin: 35px 0;
@@ -721,4 +717,3 @@ input:focus + label {
   background-color: transparent !important;
 }
 /* Rocky */
-

@@ -6,9 +6,10 @@
 <div class="container-fluid">
     <div class="row">
         <?php 
-        $box->box(count($data['allUser']),'Total User','fas fa-user-plus','bg-info','link'); 
-        $box->box(count($data['allmed']),'Total Medicine','fas fa-shopping-bag','bg-success','link'); 
-        $box->box(count($data['alltag']),'Total Category','fas fa-calendar-day','bg-warning','link'); 
+        $box->box(count($data['allUser']),'Total User','fas fa-user-plus','bg-info','users'); 
+        $box->box(count($data['allmed']),'Total Medicine','fas fa-shopping-bag','bg-success','medicine'); 
+        $box->box(count($data['alltag']),'Total Category','fa fa-tags','bg-warning','medicine'); 
+        $box->box(count($data['allorder']),'Total Orders','fa fa-bookmark','bg-danger','orders'); 
         ?>
     </div>
     <div class="row">

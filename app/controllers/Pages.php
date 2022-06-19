@@ -56,17 +56,193 @@ class Pages extends Controller{
     }
 
     public function cart(){
-        $data = ['title' => 'My Cart'];
+      if(isset($_SESSION['user_secret_name'])){
+        $data = [
+          'title' => 'My Cart',
+          'address' => '',
+          'city' => '',
+          'state' => '',
+          'pincode' => '',
+          'landmark' => '',
+          'name' => $_SESSION['user_name'],
+          'mobile' => $_SESSION['user_mobile'],
+          'isAddress' => $this->userModel->getAddressAvialibilty($_SESSION['user_secret_name']),
+          'user' => $_SESSION['user_secret_name'],
+        ];
         if(countCart() !=0){
          $data['cartData'] = $this->getMedicineByForCart();
          $data['priceSummary'] = $this->getCalculatedPrice($data['cartData']);
-         
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+          
+            $data['address'] = trim($_POST['address']);
+            $data['city'] = trim($_POST['city']);
+            $data['state'] = trim($_POST['state']);
+            $data['pincode'] = trim($_POST['pincode']);
+            $data['landmark'] = trim($_POST['landmark']);
+            $data['type'] = trim($_POST['type']);
+            $data['user'] = $_SESSION['user_secret_name'];
+            $data['name'] = trim($_POST['name']);
+            $data['mobile'] = trim($_POST['mobile']);
+
+            if($this->userModel->addCartAddress($data)){
+              header('Location: '.$_SERVER['REQUEST_URI']);
+            }else{
+              echo '<script>alert("Something Went wrong. Please Re open your browser")</script>';
+            }
+        }
           $this->view('Cart', $data);
         }else
           $this->view('emptyCart', $data);
+      }
+      else{
+        header('Location:'. URLROOT . '/login');
+      }
+
+    }
+    public function order(){
+      $data=[
+        'title'=> 'Order Placed',
+        'orderDetails' => $this->userModel->getOrders($_SESSION['user_secret_name']),
+    ];
+      $this->view('order', $data);
+    }
+    public function getOrderDetails($name_slug){
+      $allOrder = $this->userModel->getOrders($name_slug);
+      $result= [
+        'orders' => [],
+        'address' => [],
+        'medicine' => [],
+      ];
+      foreach($allOrder as $order){
+        $result['orders'][] =  $order;
+        $result['address'][] =  $this->userModel->getAddressById($order->user_details);
+        $result['medicine'][] = $this->getMedicneData($order->product);
+      }
+      return $result;
+
+    }
+
+    public function getMedicneData($data){
+      $result = [];
+      $data = explode(', ',$data);
+      foreach($data as $item){
+        $result[] = $this->userModel->getMedicineByTag($item);
+      }
+      return $result;
+    }
+
+    public function orderdone(){
+      $data=['title'=> 'Order Placed'];
+      $this->view('orderdone', $data);
+    }
+    public function cartSummary(){
+      if(isset($_SESSION['user_secret_name'])){
+        $data = [
+          'title' => 'My Cart',
+          'address' => '',
+          'city' => '',
+          'state' => '',
+          'pincode' => '',
+          'landmark' => '',
+          'name' => $_SESSION['user_name'],
+          'mobile' => $_SESSION['user_mobile'],
+          'isAddress' => $this->userModel->getAddressAvialibilty($_SESSION['user_secret_name']),
+          'user' => $_SESSION['user_secret_name'],
+          'getAddress' => $this->userModel->getAddress($_SESSION['user_secret_name']),
+
+          'username' => '',
+          'user_details' => '',
+          'product' => '',
+          'price' => '',
+          'order_date' => '',
+          'delivery_date' => '',
+          
+        ];
+        if(countCart() !=0){
+         $data['cartData'] = $this->getMedicineByForCart();
+         $data['priceSummary'] = $this->getCalculatedPrice($data['cartData']);
+         if(isset($_GET['userAddress'])){
+          if($this->userModel->deleteAddress($_GET['userAddress'])){
+            header('Location: '.URLROOT.'/cart-summary');
+          }else{
+            echo '<script>alert("Something Went wrong. Please Re open your browser")</script>';
+          } 
+        }
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+          
+          if(isset($_REQUEST['price']) && isset($_REQUEST['orderDate']) && isset($_REQUEST['deliveryDate']) && isset($_REQUEST['addressType'])){
+                    $data['username'] = $_SESSION['user_secret_name'];
+                    $data['user_details'] =  $_REQUEST['addressType'];
+                    $data['product'] = $this->getSlugArray();
+                    $data['price'] =  $_REQUEST['price'];
+                    $data['order_date'] =  $_REQUEST['orderDate'];
+                    $data['delivery_date'] =  $_REQUEST['deliveryDate'];
+
+                if($this->userModel->createOrder($data)){
+                  $this->removeAllCookie();
+                  header('Location:'. URLROOT . '/orderdone');
+                }else{
+                  echo '<script>alert("Something Went wrong. Please Re open your browser")</script>';
+                }  
+
+          }else{
+            $data['address'] = trim($_POST['address']);
+            $data['city'] = trim($_POST['city']);
+            $data['state'] = trim($_POST['state']);
+            $data['pincode'] = trim($_POST['pincode']);
+            $data['landmark'] = trim($_POST['landmark']);
+            $data['type'] = trim($_POST['type']);
+            $data['user'] = $_SESSION['user_secret_name'];
+            $data['name'] = trim($_POST['name']);
+            $data['mobile'] = trim($_POST['mobile']);
+            
+            if($this->userModel->addCartAddress($data)){
+              header('Location: '.$_SERVER['REQUEST_URI']);
+            }else{
+              echo '<script>alert("Something Went wrong. Please Re open your browser")</script>';
+            }
+          }
+            
+        }
+          $this->view('Cart_summary', $data);
+        }else
+          $this->view('emptyCart', $data);
+      }
+      else{
+        header('Location:'. URLROOT . '/login');
+      }
 
     }
     
+    public function getSlugArray(){
+      $medicine = $this->medcineModel->getMedicine();
+      $resultMed = [];
+      foreach($medicine as $med){
+          foreach ($_COOKIE as $key=>$val){
+            if($val == 'medicine'){
+              if($med->name_slug === $key){
+                $resultMed[] = $med->name_slug;
+              }
+            }
+          }
+      }
+      $resultMed = implode(', ',$resultMed);
+      return $resultMed;
+    }
+
+    public function removeAllCookie(){
+      $past = time() - 3600;
+          foreach ($_COOKIE as $key=>$val){
+            if($val == 'medicine'){
+                setcookie($key, "", 1, '/');
+            }
+          }
+    }
+
     public function getMedicineByForCart(){
       $medicine = $this->medcineModel->getMedicine();
       $resultMed = [];
@@ -219,7 +395,7 @@ class Pages extends Controller{
           }else
             $this->view('Register',$data);
     }
-
+    
     public function login(){
         $data = [
             'title' => 'Sign in',
@@ -263,6 +439,7 @@ class Pages extends Controller{
     public function createUserSession($user){
       $_SESSION['user_id'] = $user->id;
       $_SESSION['user_name'] = $user->name;
+      $_SESSION['user_mobile'] = $user->mobile;
       $_SESSION['user_email'] = $user->email;
       $_SESSION['user_type'] = $user->user_type;
       $_SESSION['user_img'] = $user->user_img;
@@ -277,6 +454,7 @@ class Pages extends Controller{
       unset($_SESSION['user_id']);
       unset($_SESSION['user_name']);
       unset($_SESSION['user_email']);
+      unset($_SESSION['user_mobile']);
       unset($_SESSION['user_type']);
       unset($_SESSION['user_status']);
       unset($_SESSION['user_secret_name']);

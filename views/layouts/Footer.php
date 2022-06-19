@@ -113,8 +113,6 @@
         </div>
     </section>
     <script>
-    $("#cart").load(location.href + " #cart");
-
     function setCookie(name, value, days) {
         <?php if(isauth() != 0):?>
         var expires = "";
@@ -124,9 +122,6 @@
             expires = "; expires=" + date.toUTCString();
         }
         document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        $('#cartCount').each(function() {
-            document.getElementById("cartCount").innerText = ++this.innerText;
-        });
         <?php else:?>
         window.location.replace('<?=URLROOT?>/login')
         <?php endif;?>

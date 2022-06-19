@@ -1,8 +1,8 @@
 <style>
-    .form-control:hover{
-        box-shadow:none;
-    }
-    </style>
+.form-control:hover {
+    box-shadow: none;
+}
+</style>
 <div class="sticky-top">
     <nav class="bg-dark d-none d-md-block">
         <div class="container">
@@ -48,11 +48,14 @@
             <div class="collapse navbar-collapse">
                 <div class="ms-auto">
                     <div class="input-group">
-                        <form>
+                        <form action="<?=URLROOT?>/search">
                             <div class="input-group">
-                                <input type="text" class="form-control" style="border-top-left-radius: 15px; border-bottom-left-radius: 15px; background-color:#e6fff2;" placeholder="Search for..."
-                                    aria-label="Recipient's username" aria-describedby="button-addon2">
-                                <button class="btn btn-outline" type="button" style="border-top-right-radius: 15px; border-bottom-right-radius: 15px; background-color:#e6fff2; border:1px solid #798686;"
+                                <input type="text" class="form-control"
+                                    style="border:1px solid #798686;border-right: 0;" placeholder="Search for..."
+                                    aria-label="Recipient's username" aria-describedby="button-addon2" name="s"
+                                    value="<?=isset($_GET['s'])?$_GET['s']:'';?>">
+                                <button class="btn btn-outline " type="submit"
+                                    style="border-right: none;border:1px solid #798686;border-left: 0;"
                                     id="button-addon2"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </div>
                         </form>
@@ -89,6 +92,7 @@
 
                             <div class="dropdown-menu" aria-labelledby="profileDropdown">
                                 <a class="dropdown-item" href="<?=URLROOT?>/profile">Profile</a>
+                                <a class="dropdown-item" href="<?=URLROOT?>/orders">My Orders</a>
                                 <?php if($_SESSION['user_type'] == 'SUPERADMIN') :?>
                                 <a class="dropdown-item" href="<?=URLROOT?>/dashboard">Dashboard</a>
                                 <?php endif;?>

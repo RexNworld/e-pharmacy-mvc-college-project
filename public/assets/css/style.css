@@ -1685,3 +1685,31 @@ a {
     min-height: 72px;
   }
 }
+.inputCustomSelect {
+  margin-top: 0 !important;
+  font-size: 14px;
+  line-height: 50px;
+  text-align: center;
+  margin: 0 4px 5px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  line-height: 25px;
+
+  color: #cecece;
+  text-decoration: none !important;
+  background-color: transparent !important;
+  border: 1px solid #cecece;
+
+  width: 100px;
+  height: 30px;
+  margin-right: 9px;
+}
+.btn-check:active + .inputCustomSelect,
+.btn-check:checked + .inputCustomSelect,
+.inputCustomSelect.active,
+.btn.show,
+.inputCustomSelect:active {
+  color: #000 !important;
+  text-decoration: none !important;
+  border: 1px solid #000;
+}

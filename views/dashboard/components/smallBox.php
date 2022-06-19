@@ -7,8 +7,8 @@ class smallBox{
         $link = !$link == '' ? $link : 'link';
         $bgcolor = !$bgcolor == '' ? $bgcolor : 'bg-warning';
        return (print(
-           '<div class="col-sm-12 col-md-4 col-lg-4">
-                <a href="'.$link.'" class="small-box shadow-own '.$bgcolor.'" style="text-decoration: none !important;">
+           '<div class="col-sm-12 col-md-3 col-lg-3">
+                <a href="'.URLROOT.'/dashboard/'.$link.'" class="small-box shadow-own '.$bgcolor.'" style="text-decoration: none !important;">
                         <div class="inner">
                             <h3>'.$count.'</h3>
                             <p>'.$title.'</p>

@@ -16,6 +16,7 @@ class Dashboard extends Controller{
                 'allUser' => $users,
                 'allmed' => $this->medcineModel->getMedicine(),
                 'alltag' => $this->medcineModel->getCategories(),
+                'allorder' => $this->medcineModel->getAllOrders(),
             ];
             $this->view('index', $data);
     }
@@ -262,9 +263,25 @@ class Dashboard extends Controller{
     }
 
     public function orders(){
-        $data['title'] = 'Order List';
+        $data = [
+            'title' => 'Order List',
+            'orderList' => $this->medcineModel->getAllOrders(),
+        ];
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $data['id'] = $_GET['id'];
+            $data['status'] = $_POST['order'];
+
+            if($this->medcineModel->updateOrders($data)){
+                header('Location: '.URLROOT.'/dashboard/orders');
+            }else{
+                echo '<script>alert("Something Went wrong. Please Re open your browser")</script>';
+            }
+        }
         $this->view('orders',$data);
     }
+
+    
 
     public function medicine(){
         $data=[

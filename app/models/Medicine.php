@@ -26,6 +26,26 @@ class Medicine{
         return $result;
     }
 
+    public function getAllOrders(){
+        $this->db->query("SELECT * FROM `e_orders` ORDER BY id DESC");
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function updateOrders($data){
+        $sql = "UPDATE `e_orders` SET status = :status WHERE id = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':status', $data['status']);
+   
+        if($this->db->execute())
+            return true;
+        else
+            return false;
+    }
+    
+
     public function getSearchData($search){
         $this->db->query("SELECT * FROM `e_medicine` WHERE (`name` LIKE '%".$search."%') OR (`categories` LIKE '%".$search."%') OR (`long_dec` LIKE '%".$search."%')");
         
@@ -127,8 +147,4 @@ class Medicine{
         else
             return false;
     }
-
-
-
-
 }

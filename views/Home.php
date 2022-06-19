@@ -58,21 +58,23 @@
                                 class="d-block" />
                         </div>
                     </div>
-                    <a href="#" class="btn btn-primary btn-theme pe-4 px-4">Upload</a>
+                    <!-- <a href="#" class="btn btn-primary btn-theme pe-4 px-4">Upload</a> -->
                 </div>
                 <a href="#" type="button" class="btn btn-sm p-0 w-100" class="link-dark" text-start
                     style="text-decoration: none">
                     <div class="shadow-sm bg-body rounded p-2">
-                        <div class="row">
-                            <div class="col-10">
-                                <h5 class="card-text text-start">
-                                    <i class="bi bi-folder-check"></i> Your order
-                                </h5>
+                        <a href="<?=URLROOT?>/orders">
+                            <div class="row">
+                                <div class="col-10">
+                                    <h5 class="card-text text-start">
+                                        <i class="bi bi-folder-check"></i> Your order
+                                    </h5>
+                                </div>
+                                <div class="col-2">
+                                    <i class="bi bi-caret-right-fill"></i>
+                                </div>
                             </div>
-                            <div class="col-2">
-                                <i class="bi bi-caret-right-fill"></i>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 </a>
             </div>

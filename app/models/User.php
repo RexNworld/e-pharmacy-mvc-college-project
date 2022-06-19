@@ -52,6 +52,83 @@ class User{
         else
             return false;
     }
+    public function addCartAddress($data){
+        $sql = "INSERT INTO `e_user_address` (username,name,number,address,city,state,pin,landmark,add_type,date) VALUES(:username,:name,:mobile,:address,:city,:state,:pin,:landmark,:type,:date)";
+        $this->db->query($sql);
+        
+        $this->db->bind(':username', $data['user']);
+        $this->db->bind(':address', $data['address']);
+        $this->db->bind(':city', $data['city']);
+        $this->db->bind(':state', $data['state']);
+        $this->db->bind(':pin', $data['pincode']);
+        $this->db->bind(':landmark', $data['landmark']);
+        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':mobile', $data['mobile']);
+        $this->db->bind(':landmark', $data['landmark']);
+        $this->db->bind(':type', $data['type']);
+        $this->db->bind(':date', date('Y-m-d h:i:s', time()));
+
+        if($this->db->execute())
+            return true;
+        else
+            return false;
+    }
+
+    public function deleteAddress($id){
+        $this->db->query("DELETE FROM `e_user_address` WHERE id = :id");
+        $this->db->bind(':id', $id);
+
+        if($this->db->execute())
+            return true;
+        else
+            return false;
+    }
+
+    public function createOrder($data){
+        $sql = "INSERT INTO `e_orders` (username,user_details,product,price,order_date,delivery_date) VALUES(:username,:user_details,:product,:price,:order_date,:delivery_date)";
+        $this->db->query($sql);
+        
+        $this->db->bind(':username', $data['username']);
+        $this->db->bind(':user_details', $data['user_details']);
+        $this->db->bind(':product', $data['product']);
+        $this->db->bind(':price', $data['price']);
+        $this->db->bind(':order_date', $data['order_date']);
+        $this->db->bind(':delivery_date', $data['delivery_date']);
+
+        if($this->db->execute())
+            return true;
+        else
+            return false;
+    }
+
+    public function getOrders($username){
+        $this->db->query("SELECT * FROM `e_orders` WHERE username = :username");
+        $this->db->bind(':username', $username);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+
+    public function getAddress($user){
+        $this->db->query("SELECT * FROM `e_user_address` WHERE username = :user");
+        $this->db->bind(':user', $user);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function getAddressById($id){
+        $this->db->query("SELECT * FROM `e_user_address` WHERE id = :id");
+        $this->db->bind(':id', $id);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+    public function getMedicineByTag($slug){
+        $this->db->query("SELECT * FROM `e_medicine` WHERE name_slug = :slug");
+        $this->db->bind(':slug', $slug);
+        $result = $this->db->resultSet();
+        return $result;
+    }
 
     public function register($data){
         $sql = "INSERT INTO `e_users` (name,mobile,email,user_name,user_img,user_secret_id,password,user_register_datetime) VALUES(:name,:mobile,:email,:user_name,:user_img,:user_secret_id,:pass,:date)";
@@ -115,7 +192,15 @@ class User{
         $this->db->execute();
     }
 
+    public function getAddressAvialibilty($user){
+        $this->db->query("SELECT * FROM `e_user_address` WHERE username = :username");
+        $this->db->bind(':username', $user);
 
+        if($this->db->rowCount() != 0)
+            return true;    
+        else
+            return false;
+    }
     
 
     public function findUserByEmail($email){
@@ -138,4 +223,6 @@ class User{
         else
             return false;
     }
+
+  
 }
