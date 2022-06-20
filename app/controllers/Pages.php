@@ -48,7 +48,10 @@ class Pages extends Controller{
   }
 
   public function profile(){
-    $this->view('user_profile');        
+    $data = [
+      'title' => 'My Profile',
+    ];
+    $this->view('user_profile',$data);        
 }
    
     public function errorPage(){
@@ -106,8 +109,12 @@ class Pages extends Controller{
         'title'=> 'Order Placed',
         'orderDetails' => $this->userModel->getOrders($_SESSION['user_secret_name']),
     ];
-      $this->view('order', $data);
+    if(count($data['orderDetails']) > 0)
+        $this->view('order', $data);
+    else
+      $this->view('emptyCart', $data);
     }
+    
     public function getOrderDetails($name_slug){
       $allOrder = $this->userModel->getOrders($name_slug);
       $result= [
@@ -137,6 +144,7 @@ class Pages extends Controller{
       $data=['title'=> 'Order Placed'];
       $this->view('orderdone', $data);
     }
+    
     public function cartSummary(){
       if(isset($_SESSION['user_secret_name'])){
         $data = [

@@ -83,11 +83,19 @@
                                 <b class="caret"></b>
                                 <?php endif;?>
                             </button>
-                            <?php else :?>
-                            <a href="<?=URLROOT?>/login">
+                            <?php elseif(!empty($_SESSION['user_name'])) :?>
+                            <button class="btn dropdown-toggle p-0" type="button" id="profileDropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="<?=URLROOT?>/public/assets/img/profile_pic.jpg" width="40" height="40"
                                     style="object-fit: cover" class="special-img" />
-                            </a>
+                                <?php if(!empty($_SESSION['user_name'])):?>
+                                <?php $name = explode(' ',$_SESSION['user_name']); echo $name[0];?>
+                                <b class="caret"></b>
+                                <?php endif;?>
+                            </button>
+                            <?php else:?>
+                            <a href="<?=URLROOT?>/login"><img src="<?=URLROOT?>/public/assets/img/profile_pic.jpg"
+                                    width="40" height="40" style="object-fit: cover" class="special-img" /></a>
                             <?php endif;?>
 
                             <div class="dropdown-menu" aria-labelledby="profileDropdown">

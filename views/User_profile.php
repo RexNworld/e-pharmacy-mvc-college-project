@@ -7,7 +7,7 @@
 
 .input-container label {
     position: absolute;
-    top: 0px;
+    top: -14px;
     left: 0px;
     font-size: 16px;
     color: #808080;
@@ -93,52 +93,38 @@
                 <div class="col-md-5 col-12">
                     <div class="picture-container">
                         <div class="picture">
-                            <img src="https://stahnu.cz/data/stahnu.cz/appimages/54/54737.jpg" class="picture-src"
-                                id="wizardPicturePreview" title="">
+                            <img src="<?=!empty($_SESSION['user_img'])?$_SESSION['user_img']:'https://stahnu.cz/data/stahnu.cz/appimages/54/54737.jpg'?>"
+                                class="picture-src" id="wizardPicturePreview" title="">
                             <input type="file" id="wizard-picture" class="" />
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-sm-12 py-4">
                                 <div class="input-container pt-2 mb-2">
-                                    <input type="text" required="" style="width:100%;" />
-                                    <label>First Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-12 py-4">
-                                <div class="input-container pt-2 mb-2">
-                                    <input type="text" required="" style="width:100%;" />
-                                    <label>Last Name</label>
+                                    <input type="text" disabled required="" style="width:100%;"
+                                        value="<?=$_SESSION['user_name']?>" />
+                                    <label>Name</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 py-4">
                             <div class="input-container pt-2 mb-2">
-                                <input type="number" required="" style="width:100%;" />
+                                <input type="number" disabled required="" style="width:100%;"
+                                    value="<?=$_SESSION['user_mobile']?>" />
                                 <label>Phone no.</label>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 py-4">
                             <div class="input-container pt-2 mb-2">
-                                <input type="text" disabled required="" style="width:100%;" />
+                                <input type="text" disabled required="" style="width:100%;"
+                                    value="<?=$_SESSION['user_secret_name']?>" />
                                 <label>Username</label>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 py-4">
                             <div class="input-container pt-2 mb-2">
-                                <input type="email" disabled required="" style="width:100%;" />
+                                <input type="email" disabled required="" style="width:100%;"
+                                    value="<?=$_SESSION['user_email']?>" />
                                 <label>E-mail</label>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-sm-12 py-4">
-                            <div class="input-container pt-2 mb-2">
-                                <input type="password" required="" style="width:100%;" />
-                                <label>Password</label>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-sm-12 py-4">
-                            <div class="input-container pt-2 mb-2">
-                                <input type="text" required="" style="width:100%;" />
-                                <label>Address</label>
                             </div>
                         </div>
                     </div>
@@ -148,8 +134,8 @@
             </div>
 
 
-            <p><input type="checkbox"> I accept all the Term & Conditions of E-pharmacy.</p>
-            <button type="button" class="btn btn-outline-success">Update</button>
+            <!-- <p><input type="checkbox"> I accept all the Term & Conditions of E-pharmacy.</p> -->
+            <!-- <button type="button" class="btn btn-outline-success">Update</button> -->
         </form>
     </div>
 </div>

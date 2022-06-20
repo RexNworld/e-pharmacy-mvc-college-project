@@ -26,8 +26,18 @@
                         <td><?=$data[0]->m_price?></td>
                         <td><?=$buyerInfo[0]->name?></td>
                         <td><?=$buyerInfo[0]->number?></td>
-                        <td><span class="badge bg-primary"><?=$order->status?></span></td>
-
+                        <?php
+                        if($order->status === 'PENDING')
+                            echo '<td><span class="badge bg-danger">'.$order->status.'</span></td>';
+                        elseif($order->status === 'ACCEPTED')
+                        echo '<td><span class="badge bg-success">'.$order->status.'</span></td>';
+                        elseif($order->status === 'PACKEGING')
+                        echo '<td><span class="badge bg-primary">'.$order->status.'</span></td>';
+                        elseif($order->status === 'OUT FOR DELIVERY')
+                        echo '<td><span class="badge bg-warning">'.$order->status.'</span></td>';
+                        elseif($order->status === 'DELIVERED')
+                        echo '<td><span class="badge bg-light">'.$order->status.'</span></td>';
+                        ?>
                         <td>
                             <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#viewDetails"
                                 data-bs-whatever="<?=$order->id?>" data-bs-name="<?=$buyerInfo[0]->name?>"
